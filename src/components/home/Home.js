@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import actions from "../../services/index";
+// import actions from "../../services/index";
 import { Link } from "react-router-dom";
 
 class Home extends Component {
@@ -14,7 +14,11 @@ class Home extends Component {
         <Link to="/donate">
           <button>Donate</button>
         </Link>
+
+        <Link to="/create">
         <button>Create an InvEd Fund</button>
+        </Link>
+        
       </div>
     );
   }
