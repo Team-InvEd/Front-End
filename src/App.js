@@ -4,8 +4,9 @@ import Home from './components/home/Home';
 import NotFound from './components/404/NotFound.js';
 import SignUp from './components/auth/SignUp';
 import LogIn from './components/auth/LogIn';
-import Profile from './components/profile/Profile'
-import actions from './services/index'
+import Profile from './components/profile/Profile';
+import actions from './services/index';
+import About from './components/about/About'
 
 class App extends Component {
   
@@ -30,7 +31,7 @@ class App extends Component {
       {this.state.email}
       <nav>
         <NavLink to="/">Home |</NavLink>
-  
+        <NavLink to="/about"> About |</NavLink>
         {this.state.email ? 
           <Fragment>
            <NavLink onClick={this.logOut} to='/'>Log Out |</NavLink> 
@@ -49,6 +50,7 @@ class App extends Component {
         <Route exact path="/sign-up" render={(props)=><SignUp {...props} setUser={this.setUser} />} />
         <Route exact path="/log-in" render={(props) => <LogIn {...props} setUser={this.setUser}/>} />
         <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state}/>} />
+        <Route exact path="/about" render={(props) => <About {...props} />} />
 
         <Route component={NotFound} />
       </Switch>
