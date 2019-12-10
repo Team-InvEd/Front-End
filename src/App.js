@@ -30,7 +30,6 @@ class App extends Component {
         <nav>
           <NavLink to="/">Home |</NavLink>
           <NavLink to="/about"> About |</NavLink>
-
           {this.state.email ? (
             <Fragment>
               <NavLink onClick={this.logOut} to="/">
