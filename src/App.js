@@ -19,7 +19,7 @@ class App extends Component {
   setUser = user => this.setState(user);
 
   logOut = async () => {
-    let res = await actions.logOut();
+    // let res = await actions.logOut();
     this.setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
   };
 
