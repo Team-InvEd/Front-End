@@ -6,7 +6,7 @@ class Home extends Component {
     //actions.test()
   }
   render() {
-    return <div>thats the home</div>;
+    return <div>InvEd</div>;
   }
 }
 
