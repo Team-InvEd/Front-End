@@ -9,16 +9,14 @@ class Home extends Component {
   render() {
     return (
       <div>
-        InvEd
+        <h1>InvEd</h1>
         <br />
         <Link to="/donate">
-          <button>Donate</button>
-        </Link>
-
+          <button className="btn btn-success">Donate</button>
+        </Link>{" "}
         <Link to="/create">
-        <button>Create an InvEd Fund</button>
+          <button className="btn btn-info">Create an InvEd Fund</button>
         </Link>
-        
       </div>
     );
   }
