@@ -7,6 +7,7 @@ import LogIn from "./components/auth/LogIn";
 import Profile from "./components/profile/Profile";
 import actions from "./services/index";
 import About from "./components/about/About";
+import Donate from "./components/donate/donate";
 
 class App extends Component {
   state = {};
@@ -51,6 +52,7 @@ class App extends Component {
             path="/sign-up"
             render={props => <SignUp {...props} setUser={this.setUser} />}
           />
+          <Route exact path="/donate" render={props => <Donate {...props} />} />
           <Route
             exact
             path="/log-in"
