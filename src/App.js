@@ -8,7 +8,8 @@ import Profile from "./components/profile/Profile";
 import actions from "./services/index";
 import About from "./components/about/About";
 import Donate from "./components/donate/donate";
-import Create from "./components/create/create"
+import Create from "./components/create/Create"
+import Results from "./components/create/Results"
 
 class App extends Component {
   state = {};
@@ -55,6 +56,7 @@ class App extends Component {
           />
           <Route exact path="/donate" render={props => <Donate {...props} />} />
           <Route exact path="/create" render={props => <Create {...props} />} />
+          <Route exact path="/results" render={props => <Results {...props} />} />
           <Route
             exact
             path="/log-in"
@@ -66,7 +68,7 @@ class App extends Component {
             render={props => <Profile {...props} user={this.state} />}
           />
           <Route exact path="/about" render={props => <About {...props} />} />
-
+          
           <Route component={NotFound} />
         </Switch>
       </BrowserRouter>

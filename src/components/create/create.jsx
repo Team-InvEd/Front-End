@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
 // import axios from "axios"
+import states from './states.json';
+import outstates from "./out-states.json";
+
+import { Link } from "react-router-dom"
 
 
 
-
-export default class create extends Component {
+export default class Create extends Component {
     
+
+    
+
     state = {
-        avgPubCost: 100,
+        avgPrivPrice: 35676,
         interestRate: .05,
-        yearsTillCollege: 5
+        currentAge: 0,
+        collegeAdmittanceAge: 0,
+        yearsTillCollege: 0,
+        inStatePrice: 10920,
+        outStatePrice: 25550,
+        theInStates: states,
+        theOutStates: outstates,
+        futureInStateCost: 0,
+        futureOutStateCost: 0,
+        futurePrivCost: 0,
+        showResults: false
     }
     
     componentDidMount() {
         // this.findCosts()
-        this.futureCost()
+        // this.futureCost()
     }
 
     // findCosts = () => {
@@ -32,30 +48,93 @@ export default class create extends Component {
     //     console.log(data)
     // }
     
+    updateCurrentAge = (e) => {
+        this.setState({
+            currentAge: Number(e.target.value)
+        },()=>{this.updateYearsTillCollege()})
+    }
 
-    futureCost = () => {
-        let cost = this.state.avgPubCost*(1+this.state.interestRate)**this.state.yearsTillCollege
-        console.log(cost)
+    updateCollegeAdmittanceAge = (e) => {
+        this.setState({
+            collegeAdmittanceAge: Number(e.target.value)
+        },()=>{this.updateYearsTillCollege()})
+    }
+
+    updateYearsTillCollege = () => {
+        this.setState({
+            yearsTillCollege: this.state.collegeAdmittanceAge - this.state.currentAge
+        })
+    }
+
+
+    updateTheState= (e) => {
+        let inStates =  {...this.state.theInStates};
+        let outStates = {...this.state.theOutStates};
+        let value = e.target.value
+        // console.log(value)
+        for (let state in inStates && outStates){
+            if(state === value){
+                this.setState({
+                    inStatePrice: inStates[state],
+                    outStatePrice: outStates[state]
+                })
+            }
+        }
+    }
+
+    futureCost = (e) => {
+        e.preventDefault();
+        if (!this.state.showResults) this.setState({showResults: !this.state.showResults});
+        if(this.state.yearsTillCollege)
+        {
+            let inCost = 4*(this.state.inStatePrice*(1+this.state.interestRate)**this.state.yearsTillCollege);
+            let outCost = 4*(this.state.outStatePrice*(1+this.state.interestRate)**this.state.yearsTillCollege);
+            let privCost = 4*(this.state.avgPrivPrice*(1+this.state.interestRate)**this.state.yearsTillCollege);
+            return(this.setState({
+                futureInStateCost: Number(inCost.toFixed(0)),
+                futurePrivCost: Number(privCost.toFixed(0)),
+                futureOutStateCost: Number(outCost.toFixed(0))
+            }))
+        }
+        else{
+            let inCost = 4*this.state.inStatePrice; 
+            let outCost = 4*this.state.outStatePrice;
+            let privCost = 4*this.state.avgPrivPrice;
+            return(this.setState({
+                futureInStateCost: Number(inCost.toFixed(0)),
+                futurePrivCost: Number(privCost.toFixed(0)),
+                futureOutStateCost: Number(outCost.toFixed(0))
+            }))
+        }
     }
         
     render() {
     return (
       <div>
-        <form>
-          Who are you raising money for?{" "}
+        <form onSubmit={this.futureCost}>
+          {/* Who are you raising money for?{" "}
           <select>
-            <option>Dropdown </option>
-          </select>
+            <option>Yourself</option>
+            <option>Your Child</option>
+            <option>Someone Else</option>
+          </select> */}
+          {/* <br />
+          <label>Recipient Name: </label>
+          <input type="text" placeholder="Name" /> <br /> */}
+          
+          Future Cost of Secondary Education
           <br />
-          <input type="text" placeholder="Name" /> <br />
           <br />
-          <input type="number" placeholder="Current Age" />
-          <br />
-          <br />
-          <input type="number" placeholder="College Admittance Age" />
+          <label>Current Age: </label>
+          <input type="number" placeholder="1" onChange={this.updateCurrentAge}/>
           <br />
           <br />
-          <select>
+          <label>Admittance Age: </label>
+          <input type="number" placeholder="18" onChange={this.updateCollegeAdmittanceAge}/>
+          <br />
+          <br />
+          <label>Admittance State: </label>
+          <select onChange={this.updateTheState}>
             <option value="AL">AL</option>
             <option value="AK">AK</option>
             <option value="AR">AR</option>
@@ -109,8 +188,14 @@ export default class create extends Component {
             <option value="WY">WY</option>
           </select>{" "}
           <br />
-          <button type="submit">Submit</button>
+          <button>Calculate</button>
         </form>
+        {this.state.showResults? <div>
+            Future In State College Cost: {this.state.futureInStateCost}
+              Future Out of State College Cost: {this.state.futureOutStateCost}
+              Future Private College Cost: {this.state.futurePrivCost}
+              </div>
+              : null}
       </div>
     );
   }
