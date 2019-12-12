@@ -3,8 +3,12 @@ import axios from "axios";
 
 export default class Donate extends React.Component {
   componentDidMount = async () => {
-    const theMessage = await axios.get("http://localhost:5000/donate");
-    console.log(theMessage);
+    try {
+      const theMessage = await axios.get("http://localhost:5000/donate");
+      console.log(theMessage);
+    } catch (err) {
+      console.log(err);
+    }
   };
   render() {
     return (

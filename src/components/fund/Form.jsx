@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
 import axios from "axios";
-
+import Fund from "./Fund";
 export default class Form extends Component {
   constructor(props) {
     super(props);
@@ -9,70 +8,88 @@ export default class Form extends Component {
       title: "",
       amount: 0,
       description: "",
+      showForm: true,
+      showFund: false
       // picture: ""
     };
   }
 
-  handleFormSubmit = e => {
+  handleFormSubmit = async e => {
     e.preventDefault();
     const title = this.state.title;
     const description = this.state.description;
     const amount = this.state.amount;
-    const user = this.props.user
+    const user = this.props.user;
     // const picture = this.state.picture;
-    
-    axios
-      .post("http://localhost:5000/fund", { user, title, description, amount })
-      .then(() => {
-        // this.props.getData();
-        this.setState({ title: "", amount: 0, description: ""});
-      })
-      .catch(error => console.log(error));
+    try {
+      const x = await axios.post("http://localhost:5000/fund", {
+        user,
+        title,
+        description,
+        amount
+      });
+      console.log(x);
+      // this.props.getData();
+      this.setState({
+        title: x.data.title,
+        amount: x.data.amount,
+        description: x.data.description,
+        showForm: false,
+        showFund: true
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
-
   handleChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
-
+  showFund = () => {
+    return <Fund theFund={this.state} />;
+  };
   render() {
     return (
       <div>
-        <form onSubmit={this.handleFormSubmit}>
-          <label>Fund Title</label>
-          <input
-            type="text"
-            name="title"
-            value={this.state.title}
-            onChange={e => this.handleChange(e)}
-          />{" "}
-          <br />
-          <label>Fund Goal Amount $</label>
-          <input
-            type="text"
-            name="goal"
-            value={this.state.goal}
-            onChange={e => this.handleChange(e)}
-          />{" "}
-          <br />
-          <label>Description</label>
-          <textarea
-            type="text"
-            name="description"
-            value={this.state.description}
-            onChange={e => this.handleChange(e)}
-          />{" "}
-          <br />
-          <label>Picture</label>
-          <input
-            type="text"
-            name="picture"
-            value={this.state.picture}
-            onChange={e => this.handleChange(e)}
-          />{" "}
-          <br />
-          <button type="submit">Create InVed Fund</button>
-        </form>
+        {this.state.showForm ? (
+          <form onSubmit={this.handleFormSubmit}>
+            <label>Fund Title</label>
+            <input
+              type="text"
+              name="title"
+              value={this.state.title}
+              onChange={e => this.handleChange(e)}
+            />{" "}
+            <br />
+            <label>Fund Goal Amount $</label>
+            <input
+              type="text"
+              name="goal"
+              value={this.state.goal}
+              onChange={e => this.handleChange(e)}
+            />{" "}
+            <br />
+            <label>Description</label>
+            <textarea
+              type="text"
+              name="description"
+              value={this.state.description}
+              onChange={e => this.handleChange(e)}
+            />{" "}
+            <br />
+            <label>Picture</label>
+            <input
+              type="text"
+              name="picture"
+              value={this.state.picture}
+              onChange={e => this.handleChange(e)}
+            />{" "}
+            <br />
+            <button type="submit">Create InVed Fund</button>
+          </form>
+        ) : (
+          this.showFund()
+        )}
       </div>
     );
   }
