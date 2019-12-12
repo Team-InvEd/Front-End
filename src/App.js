@@ -9,7 +9,8 @@ import actions from "./services/index";
 import About from "./components/about/About";
 import Donate from "./components/donate/donate";
 import Calculate from "./components/calculate/Calculate";
-import Form from "./components/fund/Form"
+import Form from "./components/fund/Form";
+import Fund from "./components/fund/Fund"
 
 class App extends Component {
   state = {};
@@ -57,6 +58,7 @@ class App extends Component {
           <Route exact path="/donate" render={props => <Donate {...props} />} />
           <Route exact path="/calculate" render={props => <Calculate {...props} />} />
           <Route exact path="/form" render={props => <Form {...props}/>} />
+          <Route exact path="/fund/:id" render={props => <Fund {...props}/>} />
 
           <Route
             exact

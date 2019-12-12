@@ -9,6 +9,7 @@ class LogIn extends Component {
     let user = await actions.logIn(this.state);
     this.props.setUser({ ...user.data });
   };
+  
   render() {
     return (
       <Fragment>
