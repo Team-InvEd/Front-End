@@ -4,11 +4,11 @@ export default class Form extends Component {
   render() {
     return (
       <div>
-        {/* <form>
+        {" "}
+        <form>
           <label>Name:</label>
           <index type="text" />
-        </form> */}
-        blahhhhh
+        </form>
       </div>
     );
   }
