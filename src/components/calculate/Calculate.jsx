@@ -1,114 +1,133 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import axios from "axios"
-import states from './states.json';
+import states from "./states.json";
 import outstates from "./out-states.json";
 
-import { Link } from "react-router-dom"
-
-
+import { Link } from "react-router-dom";
 
 export default class Calculate extends Component {
-    
+  state = {
+    avgPrivPrice: 35676,
+    interestRate: 0.05,
+    currentAge: 0,
+    collegeAdmittanceAge: 0,
+    yearsTillCollege: 0,
+    inStatePrice: 10920,
+    outStatePrice: 25550,
+    theInStates: states,
+    theOutStates: outstates,
+    futureInStateCost: 0,
+    futureOutStateCost: 0,
+    futurePrivCost: 0,
+    showResults: false
+  };
 
-    
+  componentDidMount() {
+    // this.findCosts()
+    // this.futureCost()
+  }
 
-    state = {
-        avgPrivPrice: 35676,
-        interestRate: .05,
-        currentAge: 0,
-        collegeAdmittanceAge: 0,
-        yearsTillCollege: 0,
-        inStatePrice: 10920,
-        outStatePrice: 25550,
-        theInStates: states,
-        theOutStates: outstates,
-        futureInStateCost: 0,
-        futureOutStateCost: 0,
-        futurePrivCost: 0,
-        showResults: false
-    }
-    
-    componentDidMount() {
-        // this.findCosts()
-        // this.futureCost()
-    }
+  // findCosts = () => {
+  //     let data = [];
 
-    // findCosts = () => {
-    //     let data = [];
+  //     for (let i=0; i < 100; i++) {
+  //         axios.get(`https://api.data.gov/ed/collegescorecard/v1/schools.json?page=${i}&school.state=FL&school.ownership=1&fields=latest.cost.tuition.in_state&api_key=VfotcpsOXcxUXKKatu87vem6Ra86e6urKCZJulIf`)
+  //         .then(res=>{
+  //             res.data.results.map(x => {
+  //                 data.push(x)
 
-    //     for (let i=0; i < 100; i++) {
-    //         axios.get(`https://api.data.gov/ed/collegescorecard/v1/schools.json?page=${i}&school.state=FL&school.ownership=1&fields=latest.cost.tuition.in_state&api_key=VfotcpsOXcxUXKKatu87vem6Ra86e6urKCZJulIf`)
-    //         .then(res=>{
-    //             res.data.results.map(x => {
-    //                 data.push(x)
-                
-    //             })
-    //         });
-    //     }
-    //     console.log(data)
-    // }
-    
-    updateCurrentAge = (e) => {
+  //             })
+  //         });
+  //     }
+  //     console.log(data)
+  // }
+
+  updateCurrentAge = e => {
+    this.setState(
+      {
+        currentAge: Number(e.target.value)
+      },
+      () => {
+        this.updateYearsTillCollege();
+      }
+    );
+  };
+
+  updateCollegeAdmittanceAge = e => {
+    this.setState(
+      {
+        collegeAdmittanceAge: Number(e.target.value)
+      },
+      () => {
+        this.updateYearsTillCollege();
+      }
+    );
+  };
+
+  updateYearsTillCollege = () => {
+    this.setState({
+      yearsTillCollege: this.state.collegeAdmittanceAge - this.state.currentAge
+    });
+  };
+
+  updateTheState = e => {
+    let inStates = { ...this.state.theInStates };
+    let outStates = { ...this.state.theOutStates };
+    let value = e.target.value;
+    // console.log(value)
+    for (let state in inStates && outStates) {
+      if (state === value) {
         this.setState({
-            currentAge: Number(e.target.value)
-        },()=>{this.updateYearsTillCollege()})
+          inStatePrice: inStates[state],
+          outStatePrice: outStates[state]
+        });
+      }
     }
+  };
 
-    updateCollegeAdmittanceAge = (e) => {
-        this.setState({
-            collegeAdmittanceAge: Number(e.target.value)
-        },()=>{this.updateYearsTillCollege()})
+  futureCost = e => {
+    e.preventDefault();
+    if (!this.state.showResults)
+      this.setState({ showResults: !this.state.showResults });
+    if (this.state.yearsTillCollege) {
+      let inCost =
+        4 *
+        (this.state.inStatePrice *
+          (1 + this.state.interestRate) ** this.state.yearsTillCollege);
+      let outCost =
+        4 *
+        (this.state.outStatePrice *
+          (1 + this.state.interestRate) ** this.state.yearsTillCollege);
+      let privCost =
+        4 *
+        (this.state.avgPrivPrice *
+          (1 + this.state.interestRate) ** this.state.yearsTillCollege);
+      return this.setState({
+        futureInStateCost: Number(inCost.toFixed(0)),
+        futurePrivCost: Number(privCost.toFixed(0)),
+        futureOutStateCost: Number(outCost.toFixed(0))
+      });
+    } else {
+      let inCost = 4 * this.state.inStatePrice;
+      let outCost = 4 * this.state.outStatePrice;
+      let privCost = 4 * this.state.avgPrivPrice;
+      return this.setState({
+        futureInStateCost: Number(inCost.toFixed(0)),
+        futurePrivCost: Number(privCost.toFixed(0)),
+        futureOutStateCost: Number(outCost.toFixed(0))
+      });
     }
-
-    updateYearsTillCollege = () => {
-        this.setState({
-            yearsTillCollege: this.state.collegeAdmittanceAge - this.state.currentAge
-        })
+  };
+  goToForm = () => {
+    if (this.props.user) {
+      this.props.history.push("/form");
+    } else {
+      this.props.history.push("/log-in");
+      this.props.locate("/form");
     }
-
-
-    updateTheState= (e) => {
-        let inStates =  {...this.state.theInStates};
-        let outStates = {...this.state.theOutStates};
-        let value = e.target.value
-        // console.log(value)
-        for (let state in inStates && outStates){
-            if(state === value){
-                this.setState({
-                    inStatePrice: inStates[state],
-                    outStatePrice: outStates[state]
-                })
-            }
-        }
-    }
-
-    futureCost = (e) => {
-        e.preventDefault();
-        if (!this.state.showResults) this.setState({showResults: !this.state.showResults});
-        if(this.state.yearsTillCollege)
-        {
-            let inCost = 4*(this.state.inStatePrice*(1+this.state.interestRate)**this.state.yearsTillCollege);
-            let outCost = 4*(this.state.outStatePrice*(1+this.state.interestRate)**this.state.yearsTillCollege);
-            let privCost = 4*(this.state.avgPrivPrice*(1+this.state.interestRate)**this.state.yearsTillCollege);
-            return(this.setState({
-                futureInStateCost: Number(inCost.toFixed(0)),
-                futurePrivCost: Number(privCost.toFixed(0)),
-                futureOutStateCost: Number(outCost.toFixed(0))
-            }))
-        }
-        else{
-            let inCost = 4*this.state.inStatePrice; 
-            let outCost = 4*this.state.outStatePrice;
-            let privCost = 4*this.state.avgPrivPrice;
-            return(this.setState({
-                futureInStateCost: Number(inCost.toFixed(0)),
-                futurePrivCost: Number(privCost.toFixed(0)),
-                futureOutStateCost: Number(outCost.toFixed(0))
-            }))
-        }
-    }
-        
-    render() {
+  };
+  render() {
+    console.log(this.props);
     return (
       <div>
         <form onSubmit={this.futureCost}>
@@ -121,16 +140,23 @@ export default class Calculate extends Component {
           {/* <br />
           <label>Recipient Name: </label>
           <input type="text" placeholder="Name" /> <br /> */}
-          
           Future Cost of Secondary Education
           <br />
           <br />
           <label>Current Age: </label>
-          <input type="number" placeholder="1" onChange={this.updateCurrentAge}/>
+          <input
+            type="number"
+            placeholder="1"
+            onChange={this.updateCurrentAge}
+          />
           <br />
           <br />
           <label>Admittance Age: </label>
-          <input type="number" placeholder="18" onChange={this.updateCollegeAdmittanceAge}/>
+          <input
+            type="number"
+            placeholder="18"
+            onChange={this.updateCollegeAdmittanceAge}
+          />
           <br />
           <br />
           <label>Admittance State: </label>
@@ -190,13 +216,18 @@ export default class Calculate extends Component {
           <br />
           <button>Calculate</button>
         </form>
-        {this.state.showResults? <div>
-              Future In State College Cost: {this.state.futureInStateCost}  <br/>
-              Future Out of State College Cost: {this.state.futureOutStateCost} <br/>
-              Future Private College Cost: {this.state.futurePrivCost} <br/> <br/>
-              <Link to="/form"><button>Start your InvEd Fund</button></Link>
-              </div>
-              : null}
+        {this.state.showResults ? (
+          <div>
+            Future In State College Cost: {this.state.futureInStateCost} <br />
+            Future Out of State College Cost: {
+              this.state.futureOutStateCost
+            }{" "}
+            <br />
+            Future Private College Cost: {this.state.futurePrivCost} <br />{" "}
+            <br />
+            <button onClick={this.goToForm}>Start your InvEd Fund</button>
+          </div>
+        ) : null}
       </div>
     );
   }
