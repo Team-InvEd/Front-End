@@ -63,9 +63,9 @@ export default class Form extends Component {
             <br />
             <label>Fund Goal Amount $</label>
             <input
-              type="text"
-              name="goal"
-              value={this.state.goal}
+              type="number"
+              name="amount"
+              value={this.state.amount}
               onChange={e => this.handleChange(e)}
             />{" "}
             <br />
@@ -77,14 +77,14 @@ export default class Form extends Component {
               onChange={e => this.handleChange(e)}
             />{" "}
             <br />
-            <label>Picture</label>
+            {/* <label>Picture</label>
             <input
               type="text"
               name="picture"
               value={this.state.picture}
               onChange={e => this.handleChange(e)}
             />{" "}
-            <br />
+            <br /> */}
             <button type="submit">Create InVed Fund</button>
           </form>
         ) : (

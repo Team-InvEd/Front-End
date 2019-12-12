@@ -13,10 +13,11 @@ import LogIn from "./components/auth/LogIn";
 import Profile from "./components/profile/Profile";
 import actions from "./services/index";
 import About from "./components/about/About";
-import Donate from "./components/donate/donate";
+import FundList from "./components/list/FundList";
 import Calculate from "./components/calculate/Calculate";
 import Form from "./components/fund/Form";
-import Fund from "./components/fund/Fund"
+import Fund from "./components/fund/Fund";
+import Donate from "./components/donate/Donate";
 
 class App extends Component {
   state = {
@@ -77,6 +78,7 @@ class App extends Component {
             path="/sign-up"
             render={props => <SignUp {...props} setUser={this.setUser} />}
           />
+          <Route exact path="/funds" render={props => <FundList {...props} />} />
           <Route exact path="/donate" render={props => <Donate {...props} />} />
           <Route exact path="/fund/:id" render={props => <Fund {...props}/>} />
           <Route

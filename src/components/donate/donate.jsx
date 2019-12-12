@@ -1,22 +1,11 @@
-import React from "react";
-import axios from "axios";
+import React, { Component } from 'react'
 
-export default class Donate extends React.Component {
-  componentDidMount = async () => {
-    try {
-      const theMessage = await axios.get("http://localhost:5000/donate");
-      console.log(theMessage);
-    } catch (err) {
-      console.log(err);
+export default class Donate extends Component {
+    render() {
+        return (
+            <div>
+                
+            </div>
+        )
     }
-  };
-  render() {
-    return (
-      <React.Fragment>
-        Search a fund for donating <br />
-        <br />
-        <input type="text" name="searchbar" placeholder="Search" />
-      </React.Fragment>
-    );
-  }
 }
