@@ -1,5 +1,11 @@
 import React, { Component, Fragment } from "react";
-import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
+import {
+  Redirect,
+  BrowserRouter,
+  Switch,
+  Route,
+  NavLink
+} from "react-router-dom";
 import Home from "./components/home/Home";
 import NotFound from "./components/404/NotFound.js";
 import SignUp from "./components/auth/SignUp";
@@ -13,32 +19,48 @@ import Form from "./components/fund/Form";
 import Fund from "./components/fund/Fund"
 
 class App extends Component {
-  state = {};
+  state = {
+    where: ""
+  };
 
   async componentDidMount() {
     let user = await actions.isLoggedIn();
-    this.setState({ ...user.data });
+    this.setState({ user: { ...user.data } });
   }
 
-  setUser = user => this.setState(user);
+  setUser = user => {
+    this.setState({ user }, () => {
+      if (this.state.where) {
+        this.props.history.push(this.state.where)
+        this.setState({where: null})
+      }
+    });
+  };
 
   logOut = async () => {
     // let res = await actions.logOut();
-    this.setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
+    this.setUser(null);
   };
-
+  locate = exactly => {
+    this.setState({
+      where: exactly
+    });
+  };
   render() {
+    console.log(this.state);
     return (
-      <BrowserRouter>
-        {this.state.email}
+      <div>
+        {this.state.user ? this.state.user.email : "Logged out."}
         <nav>
           <NavLink to="/">Home |</NavLink>
           <NavLink to="/about"> About |</NavLink>
-          {this.state.email ? (
+          {this.state.user ? (
             <Fragment>
-              <NavLink onClick={this.logOut} to="/">
-                Log Out |
-              </NavLink>
+              {this.state.user && (
+                <NavLink onClick={this.logOut} to="/">
+                  Log Out |
+                </NavLink>
+              )}
               <NavLink to="/profile">Profile|</NavLink>
             </Fragment>
           ) : (
@@ -56,9 +78,20 @@ class App extends Component {
             render={props => <SignUp {...props} setUser={this.setUser} />}
           />
           <Route exact path="/donate" render={props => <Donate {...props} />} />
-          <Route exact path="/calculate" render={props => <Calculate {...props} />} />
-          <Route exact path="/form" render={props => <Form {...props}/>} />
           <Route exact path="/fund/:id" render={props => <Fund {...props}/>} />
+          <Route
+            exact
+            path="/calculate"
+            render={props => (
+              <Calculate
+                {...props}
+                user={this.state.user}
+                locate={this.locate}
+              />
+            )}
+          />
+
+          <Route exact path="/form" render={props => <Form {...props} />} />
 
           <Route
             exact
@@ -71,10 +104,10 @@ class App extends Component {
             render={props => <Profile {...props} user={this.state} />}
           />
           <Route exact path="/about" render={props => <About {...props} />} />
-          
+
           <Route component={NotFound} />
         </Switch>
-      </BrowserRouter>
+      </div>
     );
   }
 }
