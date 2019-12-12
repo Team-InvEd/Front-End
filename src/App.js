@@ -91,7 +91,7 @@ class App extends Component {
             )}
           />
 
-          <Route exact path="/form" render={props => <Form {...props} />} />
+          <Route exact path="/form" render={props => <Form {...props} user={this.state.user} />} />
 
           <Route
             exact

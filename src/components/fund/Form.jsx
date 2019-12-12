@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default class Form extends Component {
@@ -7,9 +7,9 @@ export default class Form extends Component {
     super(props);
     this.state = {
       title: "",
-      goal: 0,
+      amount: 0,
       description: "",
-      picture: ""
+      // picture: ""
     };
   }
 
@@ -17,13 +17,15 @@ export default class Form extends Component {
     e.preventDefault();
     const title = this.state.title;
     const description = this.state.description;
-    const goal = this.state.goal;
-    const picture = this.state.picture;
+    const amount = this.state.amount;
+    const user = this.props.user
+    // const picture = this.state.picture;
+    
     axios
-      .post("http://localhost:5000/fund", { title, goal, description, picture })
+      .post("http://localhost:5000/fund", { user, title, description, amount })
       .then(() => {
         // this.props.getData();
-        this.setState({ title: "", goal: 0, description: "", picture: "" });
+        this.setState({ title: "", amount: 0, description: ""});
       })
       .catch(error => console.log(error));
   };
