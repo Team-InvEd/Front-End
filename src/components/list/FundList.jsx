@@ -20,11 +20,17 @@ export default class FundList extends React.Component {
       console.log(err);
     }
   };
-
+  goToForm = id => {
+    if (this.props.user) {
+      this.props.history.push(`/donate/${id}`);
+    } else {
+      this.props.history.push("/log-in");
+      this.props.locate("/donate");
+    }
+  };
   showFunds = () => {
-    return this.state.filtered.map((res, i) => {
-      console.log(res.title);
-      return (
+    if (this.state.filtered.length) {
+      return this.state.filtered.map((res, i) => (
         <div key={i}>
           {res.title}
           <br />
@@ -32,14 +38,28 @@ export default class FundList extends React.Component {
           <br />
           {res.description}
           <br />
-          <Link to="/donate">
-            <button>Donate</button>
-          </Link>
+          <button onClick={() => this.goToForm(res._id)}>Donate</button>
           <hr />
           <br />
         </div>
-      );
-    });
+      ));
+    } else {
+      return this.state.theFunds.map((res, i) => {
+        return (
+          <div key={i}>
+            {res.title}
+            <br />
+            {res.amount}
+            <br />
+            {res.description}
+            <br />
+            <button onClick={() => this.goToForm(res._id)}>Donate</button>
+            <hr />
+            <br />
+          </div>
+        );
+      });
+    }
   };
 
   updateSearch = e => {

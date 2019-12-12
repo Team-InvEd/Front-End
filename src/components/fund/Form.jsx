@@ -22,7 +22,7 @@ export default class Form extends Component {
     const user = this.props.user;
     // const picture = this.state.picture;
     try {
-      const x = await axios.post("http://localhost:5000/fund", {
+      const x = await axios.post("/fund", {
         user,
         title,
         description,

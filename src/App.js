@@ -17,7 +17,7 @@ import FundList from "./components/list/FundList";
 import Calculate from "./components/calculate/Calculate";
 import Form from "./components/fund/Form";
 import Fund from "./components/fund/Fund";
-import Donate from "./components/donate/Donate";
+import Donate from "./components/donate/Donate.jsx";
 
 class App extends Component {
   state = {
@@ -32,8 +32,8 @@ class App extends Component {
   setUser = user => {
     this.setState({ user }, () => {
       if (this.state.where) {
-        this.props.history.push(this.state.where)
-        this.setState({where: null})
+        this.props.history.push(this.state.where);
+        this.setState({ where: null });
       }
     });
   };
@@ -51,7 +51,7 @@ class App extends Component {
     console.log(this.state);
     return (
       <div>
-        {this.state.user ? this.state.user.email : "Logged out."}
+        {this.state.user ? this.state.user.email : null}
         <nav>
           <NavLink to="/">Home |</NavLink>
           <NavLink to="/about"> About |</NavLink>
@@ -78,9 +78,23 @@ class App extends Component {
             path="/sign-up"
             render={props => <SignUp {...props} setUser={this.setUser} />}
           />
-          <Route exact path="/funds" render={props => <FundList {...props} />} />
-          <Route exact path="/donate" render={props => <Donate {...props} />} />
-          <Route exact path="/fund/:id" render={props => <Fund {...props}/>} />
+          <Route
+            exact
+            path="/funds"
+            render={props => (
+              <FundList
+                {...props}
+                user={this.state.user}
+                locate={this.locate}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/donate"
+            render={props => <Donate {...props} user={this.state.user} />}
+          />
+          <Route exact path="/fund/:id" render={props => <Fund {...props} />} />
           <Route
             exact
             path="/calculate"
@@ -93,7 +107,11 @@ class App extends Component {
             )}
           />
 
-          <Route exact path="/form" render={props => <Form {...props} user={this.state.user} />} />
+          <Route
+            exact
+            path="/form"
+            render={props => <Form {...props} user={this.state.user} />}
+          />
 
           <Route
             exact
@@ -103,10 +121,13 @@ class App extends Component {
           <Route
             exact
             path="/profile"
-            render={props => <Profile {...props} user={this.state} />}
+            render={props => <Profile {...props} user={this.state.user} />}
           />
           <Route exact path="/about" render={props => <About {...props} />} />
-
+          <Route
+            path="/donate/:id"
+            render={props => <Donate {...props} user={this.state.user} />}
+          />
           <Route component={NotFound} />
         </Switch>
       </div>

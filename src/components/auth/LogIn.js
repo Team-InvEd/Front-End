@@ -9,13 +9,18 @@ class LogIn extends Component {
     let user = await actions.logIn(this.state);
     this.props.setUser({ ...user.data });
   };
-  
+
   render() {
     return (
       <Fragment>
         <h2>LogIn</h2>
         <form onSubmit={this.handleSubmit}>
-          <input name="email" type="email" onChange={this.handleChange} />{" "}
+          <input
+            name="email"
+            placeholder="email address"
+            type="email"
+            onChange={this.handleChange}
+          />{" "}
           <br />
           <input
             name="password"
