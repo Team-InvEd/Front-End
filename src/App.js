@@ -8,8 +8,8 @@ import Profile from "./components/profile/Profile";
 import actions from "./services/index";
 import About from "./components/about/About";
 import Donate from "./components/donate/donate";
-import Create from "./components/create/Create"
-import Results from "./components/create/Results"
+import Calculate from "./components/calculate/Calculate";
+import Form from "./components/fund/Form"
 
 class App extends Component {
   state = {};
@@ -55,8 +55,9 @@ class App extends Component {
             render={props => <SignUp {...props} setUser={this.setUser} />}
           />
           <Route exact path="/donate" render={props => <Donate {...props} />} />
-          <Route exact path="/create" render={props => <Create {...props} />} />
-          <Route exact path="/results" render={props => <Results {...props} />} />
+          <Route exact path="/calculate" render={props => <Calculate {...props} />} />
+          <Route exact path="/form" render={props => <Form {...props}/>} />
+
           <Route
             exact
             path="/log-in"

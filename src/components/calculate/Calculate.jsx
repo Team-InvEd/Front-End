@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 
 
 
-export default class Create extends Component {
+export default class Calculate extends Component {
     
 
     
@@ -191,9 +191,10 @@ export default class Create extends Component {
           <button>Calculate</button>
         </form>
         {this.state.showResults? <div>
-            Future In State College Cost: {this.state.futureInStateCost}
-              Future Out of State College Cost: {this.state.futureOutStateCost}
-              Future Private College Cost: {this.state.futurePrivCost}
+              Future In State College Cost: {this.state.futureInStateCost}  <br/>
+              Future Out of State College Cost: {this.state.futureOutStateCost} <br/>
+              Future Private College Cost: {this.state.futurePrivCost} <br/> <br/>
+              <Link to="/form"><button>Start your InvEd Fund</button></Link>
               </div>
               : null}
       </div>

@@ -14,8 +14,8 @@ class Home extends Component {
         <Link to="/donate">
           <button className="btn btn-success">Donate</button>
         </Link>{" "}
-        <Link to="/create">
-          <button className="btn btn-info">Create an InvEd Fund</button>
+        <Link to="/calculate">
+          <button className="btn btn-info">Get Started</button>
         </Link>
       </div>
     );
