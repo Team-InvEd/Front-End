@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import states from "./states.json";
 import outstates from "./out-states.json";
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 export default class Calculate extends Component {
   state = {
