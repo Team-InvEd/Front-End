@@ -23,12 +23,14 @@ import {
 
 class App extends Component {
   state = {
-    where: ""
+    where: "",
+    user: null
   };
 
   async componentDidMount() {
     let user = await actions.isLoggedIn();
-    this.setState({ user: { ...user.data } });
+    if (user.data.email) this.setState({ user: { ...user.data } });
+
     this.updateServer();
   }
   updateServer = async () => {
@@ -50,6 +52,7 @@ class App extends Component {
   logOut = async () => {
     await actions.logOut();
     this.setUser(null);
+    this.setState({ user: null });
   };
   locate = exactly => {
     this.setState({
@@ -69,25 +72,21 @@ class App extends Component {
     console.log(this.state);
     return (
       <div>
-        {this.state.user ? this.state.user.email : null}
+        {this.state.user ? <span>Hello {this.state.user.name}! </span> : null}
         <nav>
           <NavLink to="/">Home |</NavLink>
           <NavLink to="/about"> About |</NavLink>
           {this.state.user ? (
             <Fragment>
-              {this.state.user.email ? (
-                <NavLink onClick={this.logOut} to="/">
-                  Log Out |
-                </NavLink>
-              ) : (
-                <NavLink to="/log-in">Log In |</NavLink>
-              )}
-              <NavLink to="/profile">Profile|</NavLink>
+              <NavLink onClick={this.logOut} to="/">
+                Log Out |{" "}
+              </NavLink>
+              <NavLink to="/profile"> Profile |</NavLink>
             </Fragment>
           ) : (
             <Fragment>
-              <NavLink to="/sign-up">Sign Up |</NavLink>
-              <NavLink to="/log-in">Log In |</NavLink>
+              <NavLink to="/log-in"> Log In |</NavLink>
+              <NavLink to="/sign-up"> Sign Up |</NavLink>
             </Fragment>
           )}
         </nav>

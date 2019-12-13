@@ -3,14 +3,12 @@ import actions from "../../services/index";
 class LogIn extends Component {
   state = {};
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
-
   handleSubmit = async e => {
     e.preventDefault();
     let user = await actions.logIn(this.state);
     this.props.setUser({ ...user.data });
     this.props.history.push("/");
   };
-
   render() {
     return (
       <Fragment>

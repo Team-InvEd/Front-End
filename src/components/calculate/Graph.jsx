@@ -5,10 +5,9 @@ Math.formatNum = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 
 export default class Graph extends Component {
-    
-    state={
-        dataArr: []
-    }
+  state = {
+    dataArr: []
+  };
 
 
 
@@ -69,3 +68,4 @@ export default class Graph extends Component {
         )
         }
     }
+    
