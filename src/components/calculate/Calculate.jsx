@@ -1,9 +1,14 @@
 import React, { Component } from "react";
-// import axios from "axios"
-import states from "./states.json";
-import outstates from "./out-states.json";
+import axios from "axios"
+// import states from "./states.json";
+// import outstates from "./out-states.json";
+import Graph from "./Graph.jsx";
 
 // import { Link } from "react-router-dom";
+
+
+
+
 export default class Calculate extends Component {
   state = {
     avgPrivPrice: 35676,
@@ -13,19 +18,36 @@ export default class Calculate extends Component {
     yearsTillCollege: 0,
     inStatePrice: 10920,
     outStatePrice: 25550,
-    theInStates: states,
-    theOutStates: outstates,
+    theInStates: null,
+    theOutStates: null,
     futureInStateCost: 0,
     futureOutStateCost: 0,
     futurePrivCost: 0,
     showResults: false
   };
 
-  componentDidMount() {
+  componentWillMount = async () => {
     // this.findCosts()
     // this.futureCost()
-  }
+    try {
+    const InStatesData = await axios.get('http://localhost:5000/api/states')
+    this.setState({
+      theInStates: InStatesData.data
+    })
+    } catch (err) {
+      console.log(err)
+    }
 
+    try{
+    const outStatesData = await axios.get('http://localhost:5000/api/out-states')
+    this.setState({
+      theOutStates: outStatesData.data
+    })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  
   // findCosts = () => {
   //     let data = [];
 
@@ -224,6 +246,7 @@ export default class Calculate extends Component {
             <br />
             Future Private College Cost: {this.state.futurePrivCost} <br />{" "}
             <br />
+            <Graph data={this.state}/>
             <button onClick={this.goToForm}>Start your InvEd Fund</button>
           </div>
         ) : null}

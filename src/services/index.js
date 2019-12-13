@@ -21,7 +21,7 @@ const actions = {
   logOut: async () => {
     return await service.get("/logout");
   }
-  
+
 };
 
 export default actions;
