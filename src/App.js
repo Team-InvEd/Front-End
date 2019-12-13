@@ -18,6 +18,8 @@ import Calculate from "./components/calculate/Calculate";
 import Form from "./components/fund/Form";
 import Fund from "./components/fund/Fund";
 import Donate from "./components/donate/Donate.jsx";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -27,8 +29,15 @@ class App extends Component {
   async componentDidMount() {
     let user = await actions.isLoggedIn();
     this.setState({ user: { ...user.data } });
+    this.updateServer();
   }
-
+  updateServer = async () => {
+    const funds = await axios.get("http://localhost:5000/funds");
+    this.setState({
+      theFunds: funds.data.theFunds,
+      filtered: funds.data.theFunds
+    });
+  };
   setUser = user => {
     this.setState({ user }, () => {
       if (this.state.where) {
@@ -45,6 +54,15 @@ class App extends Component {
   locate = exactly => {
     this.setState({
       where: exactly
+    });
+  };
+
+  updateSearch = e => {
+    let fList = this.state.theFunds.filter(eFund => {
+      return eFund.title.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+    this.setState({
+      filtered: fList
     });
   };
   render() {
@@ -86,6 +104,10 @@ class App extends Component {
                 {...props}
                 user={this.state.user}
                 locate={this.locate}
+                theFunds={this.state.theFunds}
+                filtered={this.state.filtered}
+                showFunds={this.showFunds}
+                updateSearch={this.updateSearch}
               />
             )}
           />
@@ -94,7 +116,19 @@ class App extends Component {
             path="/donate"
             render={props => <Donate {...props} user={this.state.user} />}
           />
-          <Route exact path="/fund/:id" render={props => <Fund {...props} />} />
+          <Route
+            exact
+            path="/fund/:id"
+            render={props => (
+              <Fund
+                {...props}
+                theFunds={this.state.theFunds}
+                filtered={this.state.filtered}
+                showFunds={this.showFunds}
+                updateSearch={this.updateSearch}
+              />
+            )}
+          />
           <Route
             exact
             path="/calculate"
@@ -110,7 +144,13 @@ class App extends Component {
           <Route
             exact
             path="/form"
-            render={props => <Form {...props} user={this.state.user} />}
+            render={props => (
+              <Form
+                {...props}
+                user={this.state.user}
+                updateServer={this.updateServer}
+              />
+            )}
           />
 
           <Route

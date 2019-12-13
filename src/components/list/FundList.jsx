@@ -4,23 +4,6 @@ import Search from "./Search";
 import { Link } from "react-router-dom";
 
 export default class FundList extends React.Component {
-  state = {
-    theFunds: [],
-    filtered: []
-  };
-
-  componentDidMount = async () => {
-    try {
-      const funds = await axios.get("http://localhost:5000/funds");
-      console.log(funds);
-      this.setState({
-        theFunds: funds.data.theFunds,
-        filtered: funds.data.theFunds
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
   goToForm = id => {
     if (this.props.user) {
       this.props.history.push(`/donate/${id}`);
@@ -30,10 +13,10 @@ export default class FundList extends React.Component {
     }
   };
   showFunds = () => {
-    if (this.state.filtered.length) {
-      return this.state.filtered.map((res, i) => (
+    if (this.props.filtered.length) {
+      return this.props.filtered.map((res, i) => (
         <div key={i}>
-          {res.title}
+          <Link to={"/fund/" + res._id}>{res.title}</Link>
           <br />
           {res.amount}
           <br />
@@ -46,19 +29,10 @@ export default class FundList extends React.Component {
       ));
     }
   };
-
-  updateSearch = e => {
-    let fList = this.state.theFunds.filter(eFund => {
-      return eFund.title.toLowerCase().includes(e.target.value.toLowerCase());
-    });
-    this.setState({
-      filtered: fList
-    });
-  };
   render() {
     return (
       <React.Fragment>
-        <Search search={this.updateSearch} />
+        <Search search={this.props.updateSearch} />
         {this.showFunds()}
       </React.Fragment>
     );
