@@ -1,11 +1,4 @@
 import React, { Component, Fragment } from "react";
-import {
-  Redirect,
-  BrowserRouter,
-  Switch,
-  Route,
-  NavLink
-} from "react-router-dom";
 import Home from "./components/home/Home";
 import NotFound from "./components/404/NotFound.js";
 import SignUp from "./components/auth/SignUp";
@@ -19,7 +12,14 @@ import Form from "./components/fund/Form";
 import Fund from "./components/fund/Fund";
 import Donate from "./components/donate/Donate.jsx";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import {
+  Redirect,
+  BrowserRouter,
+  Switch,
+  Route,
+  NavLink,
+  Link
+} from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -48,7 +48,7 @@ class App extends Component {
   };
 
   logOut = async () => {
-    // let res = await actions.logOut();
+    await actions.logOut();
     this.setUser(null);
   };
   locate = exactly => {
@@ -75,10 +75,12 @@ class App extends Component {
           <NavLink to="/about"> About |</NavLink>
           {this.state.user ? (
             <Fragment>
-              {this.state.user && (
+              {this.state.user.email ? (
                 <NavLink onClick={this.logOut} to="/">
                   Log Out |
                 </NavLink>
+              ) : (
+                <NavLink to="/log-in">Log In |</NavLink>
               )}
               <NavLink to="/profile">Profile|</NavLink>
             </Fragment>
