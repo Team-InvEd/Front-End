@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios"
 // import states from "./states.json";
-import outstates from "./out-states.json";
+// import outstates from "./out-states.json";
 import Graph from "./Graph.jsx";
 
 // import { Link } from "react-router-dom";
@@ -19,7 +19,7 @@ export default class Calculate extends Component {
     inStatePrice: 10920,
     outStatePrice: 25550,
     theInStates: null,
-    theOutStates: outstates,
+    theOutStates: null,
     futureInStateCost: 0,
     futureOutStateCost: 0,
     futurePrivCost: 0,
@@ -30,15 +30,24 @@ export default class Calculate extends Component {
     // this.findCosts()
     // this.futureCost()
     try {
-    const statesData = await axios.get('http://localhost:5000/api/states')
+    const InStatesData = await axios.get('http://localhost:5000/api/states')
     this.setState({
-      theInStates: statesData.data
+      theInStates: InStatesData.data
+    })
+    } catch (err) {
+      console.log(err)
+    }
+
+    try{
+    const outStatesData = await axios.get('http://localhost:5000/api/out-states')
+    this.setState({
+      theOutStates: outStatesData.data
     })
     } catch (err) {
       console.log(err)
     }
   }
-
+  
   // findCosts = () => {
   //     let data = [];
 
