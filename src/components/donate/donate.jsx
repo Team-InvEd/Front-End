@@ -9,6 +9,7 @@ export default class Donate extends Component {
     const amount = this.state.amount;
     const userId = this.props.user._id;
     const fundId = this.props.match.params.id;
+    console.log(fundId);
     try {
       const x = await axios.post("http://localhost:5000/donate", {
         amount,

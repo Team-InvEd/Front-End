@@ -1,18 +1,28 @@
 import React, { Component } from "react";
 
 export default class Fund extends Component {
+  state = {
+    theID: this.props.match.params.id
+  };
   render() {
-    return (
-      <div>
-        This is the Fund component.
-        <br />
-        Title: {this.props.theFund.title}
-        <br/>
-        Amount: {this.props.theFund.amount}
-        <br/>
-        Description: {this.props.theFund.description}
-        <br />
-      </div>
+    let theFund = this.props.theFunds.find(
+      theFund => theFund._id == this.state.theID
     );
+    if (theFund) {
+      return (
+        <div>
+          This is the Fund component.
+          <br />
+          Title: {theFund.title}
+          <br />
+          Amount: {theFund.amount}
+          <br />
+          Description: {theFund.description}
+          <br />
+        </div>
+      );
+    } else {
+      return <div>No data.</div>;
+    }
   }
 }

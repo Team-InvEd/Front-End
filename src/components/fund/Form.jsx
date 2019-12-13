@@ -30,13 +30,20 @@ export default class Form extends Component {
       });
       console.log(x);
       // this.props.getData();
-      this.setState({
-        title: x.data.title,
-        amount: x.data.amount,
-        description: x.data.description,
-        showForm: false,
-        showFund: true
-      });
+      this.setState(
+        {
+          title: x.data.title,
+          amount: x.data.amount,
+          description: x.data.description,
+          showForm: false,
+          showFund: true
+        },
+        () => {
+          this.props.updateServer();
+
+          this.props.history.push(`/fund/${x.data._id}`);
+        }
+      );
     } catch (err) {
       console.log(err);
     }
@@ -45,9 +52,7 @@ export default class Form extends Component {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
-  showFund = () => {
-    return <Fund theFund={this.state} />;
-  };
+
   render() {
     return (
       <div>
@@ -87,9 +92,7 @@ export default class Form extends Component {
             <br /> */}
             <button type="submit">Create InVed Fund</button>
           </form>
-        ) : (
-          this.showFund()
-        )}
+        ) : null}
       </div>
     );
   }
