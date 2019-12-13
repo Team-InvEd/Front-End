@@ -27,7 +27,7 @@ export default class Form extends Component {
         title,
         description,
         amount
-      });
+      }, {withCredentials:true});
       console.log(x);
       // this.props.getData();
       this.setState(

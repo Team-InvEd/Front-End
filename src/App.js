@@ -29,6 +29,7 @@ class App extends Component {
 
   async componentDidMount() {
     let user = await actions.isLoggedIn();
+     console.log(user)
     if (user.data.email) this.setState({ user: { ...user.data } });
 
     this.updateServer();
@@ -72,8 +73,9 @@ class App extends Component {
     console.log(this.state);
     return (
       <div>
-        {this.state.user ? <span>Hello {this.state.user.name}! </span> : null}
         <nav>
+          {this.state.user ? <span>Hello {this.state.user.name}! </span> : null}
+
           <NavLink to="/">Home |</NavLink>
           <NavLink to="/about"> About |</NavLink>
           {this.state.user ? (
@@ -112,7 +114,7 @@ class App extends Component {
               />
             )}
           />
-          
+
           <Route
             exact
             path="/fund/:id"

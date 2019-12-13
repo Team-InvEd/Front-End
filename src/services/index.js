@@ -20,7 +20,10 @@ const actions = {
   },
   logOut: async () => {
     return await service.get("/logout");
-  }
+  },
+  // saveFund: async() => {
+  //   axios.post
+  // }
 
 };
 
