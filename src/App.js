@@ -17,7 +17,7 @@ import FundList from "./components/list/FundList";
 import Calculate from "./components/calculate/Calculate";
 import Form from "./components/fund/Form";
 import Fund from "./components/fund/Fund";
-import Donate from "./components/donate/Donate.jsx";
+import Donate from "./components/donate/donate"
 
 class App extends Component {
   state = {
@@ -89,11 +89,11 @@ class App extends Component {
               />
             )}
           />
-          <Route
+          {/* <Route
             exact
             path="/donate"
             render={props => <Donate {...props} user={this.state.user} />}
-          />
+          /> */}
           <Route exact path="/fund/:id" render={props => <Fund {...props} />} />
           <Route
             exact
