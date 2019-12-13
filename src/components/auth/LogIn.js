@@ -8,6 +8,7 @@ class LogIn extends Component {
     e.preventDefault();
     let user = await actions.logIn(this.state);
     this.props.setUser({ ...user.data });
+    this.props.history.push("/");
   };
 
   render() {

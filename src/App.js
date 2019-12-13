@@ -120,6 +120,8 @@ class App extends Component {
             render={props => (
               <Fund
                 {...props}
+                user={this.state.user}
+                locate={this.locate}
                 theFunds={this.state.theFunds}
                 filtered={this.state.filtered}
                 showFunds={this.showFunds}

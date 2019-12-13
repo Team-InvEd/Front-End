@@ -239,13 +239,6 @@ export default class Calculate extends Component {
         </form>
         {this.state.showResults ? (
           <div>
-            Future In State College Cost: {this.state.futureInStateCost} <br />
-            Future Out of State College Cost: {
-              this.state.futureOutStateCost
-            }{" "}
-            <br />
-            Future Private College Cost: {this.state.futurePrivCost} <br />{" "}
-            <br />
             <Graph data={this.state}/>
             <button onClick={this.goToForm}>Start your InvEd Fund</button>
           </div>
