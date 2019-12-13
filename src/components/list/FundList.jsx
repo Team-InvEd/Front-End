@@ -14,7 +14,8 @@ export default class FundList extends React.Component {
       const funds = await axios.get("http://localhost:5000/funds");
       console.log(funds);
       this.setState({
-        theFunds: funds.data.theFunds
+        theFunds: funds.data.theFunds,
+        filtered: funds.data.theFunds
       });
     } catch (err) {
       console.log(err);
@@ -43,22 +44,6 @@ export default class FundList extends React.Component {
           <br />
         </div>
       ));
-    } else {
-      return this.state.theFunds.map((res, i) => {
-        return (
-          <div key={i}>
-            {res.title}
-            <br />
-            {res.amount}
-            <br />
-            {res.description}
-            <br />
-            <button onClick={() => this.goToForm(res._id)}>Donate</button>
-            <hr />
-            <br />
-          </div>
-        );
-      });
     }
   };
 
