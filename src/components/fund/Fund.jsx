@@ -15,11 +15,15 @@ export default class Fund extends Component {
   };
 
   showDonations = () => {
-    const data = this.props.transactions
-    return (data.map((res,i)=> (
+    
+    let theTransactions = this.props.transactions.filter(
+      eachT => eachT.fundId === this.props.match.params.id
+    );
+
+    return (theTransactions.map((res,i)=> (
       <div key={i}>
         {res.amount}
-        {res.userId}
+        {/* {res.user.name} */}
       </div>
     )))
   }
@@ -31,11 +35,7 @@ export default class Fund extends Component {
       theFund => theFund._id === this.state.theID
     );
 
-    let theTransactions = this.props.transactions.filter(
-      eachT => eachT.fundId === this.props.match.params.id
-    );
-
-    console.log(theTransactions);
+    
 
     if (theFund) {
       return (
