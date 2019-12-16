@@ -15,7 +15,6 @@ export default class Fund extends Component {
   };
 
   showDonations = () => {
-    
     let theTransactions = this.props.transactions.filter(
       eachT => eachT.fundId === this.props.match.params.id
     );

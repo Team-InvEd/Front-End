@@ -126,6 +126,7 @@ class App extends Component {
                   filtered={this.state.filtered}
                   showFunds={this.showFunds}
                   updateSearch={this.updateSearch}
+                  transactions={this.state.theTransactions.theT}
                 />
               )}
             />
