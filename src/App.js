@@ -24,15 +24,20 @@ import {
 class App extends Component {
   state = {
     where: "",
-    user: null
+    user: null,
+    theTransactions: null
   };
 
   async componentDidMount() {
     let user = await actions.isLoggedIn();
-     console.log(user)
+    console.log(user);
     if (user.data.email) this.setState({ user: { ...user.data } });
 
     this.updateServer();
+    let theTransactions = await axios.get(
+      "http://localhost:5000/api/transactions"
+    );
+    this.setState({ theTransactions: theTransactions.data});
   }
   updateServer = async () => {
     const funds = await axios.get("http://localhost:5000/funds");
@@ -71,6 +76,7 @@ class App extends Component {
   };
   render() {
     console.log(this.state);
+    if(this.state.theFunds && this.state.theTransactions)
     return (
       <div>
         <nav>
@@ -127,6 +133,7 @@ class App extends Component {
                 filtered={this.state.filtered}
                 showFunds={this.showFunds}
                 updateSearch={this.updateSearch}
+                transactions={this.state.theTransactions.theT}
               />
             )}
           />
@@ -172,7 +179,11 @@ class App extends Component {
           <Route component={NotFound} />
         </Switch>
       </div>
-    );
+    )
+    else
+    return(
+    <div>loading</div>
+    )
   }
 }
 export default App;

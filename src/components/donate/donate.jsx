@@ -3,18 +3,21 @@ import axios from "axios";
 
 export default class Donate extends Component {
   state = {
-    amount: null
+    amount: null,
+    comment: ""
   };
   submitDonation = async () => {
     const amount = this.state.amount;
     const userId = this.props.user._id;
     const fundId = this.props.match.params.id;
+    const comment = this.state.comment;
     console.log(fundId);
     try {
       const x = await axios.post("http://localhost:5000/donate", {
         amount,
         userId,
-        fundId
+        fundId,
+        comment
       });
       this.props.history.push("/funds");
     } catch (err) {
@@ -36,7 +39,15 @@ export default class Donate extends Component {
           type="number"
           name="amount"
           placeholder="amount"
-        />
+        />{" "}
+        <br /> <br />
+        <textarea
+          type="text"
+          name="comment"
+          placeholder="Comment"
+          onChange={this.handleChange}
+        />{" "}
+        <br /> <br />
         {this.state.amount > 0 ? (
           <button onClick={this.submitDonation}>Send Donation</button>
         ) : (
