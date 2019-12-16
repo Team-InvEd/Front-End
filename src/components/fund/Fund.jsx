@@ -23,7 +23,7 @@ export default class Fund extends Component {
     return (theTransactions.map((res,i)=> (
       <div key={i}>
         {res.amount}
-        {/* {res.user.name} */}
+        {res.user}
       </div>
     )))
   }
