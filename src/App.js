@@ -75,7 +75,7 @@ class App extends Component {
     });
   };
   render() {
-    console.log(this.state);
+    console.log(this.state.theTransactions);
     if (this.state.theFunds && this.state.theTransactions)
       return (
         <div>
