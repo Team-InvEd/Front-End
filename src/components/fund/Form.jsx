@@ -19,11 +19,12 @@ export default class Form extends Component {
     const title = this.state.title;
     const description = this.state.description;
     const amount = this.state.amount;
-    const user = this.props.user;
+    const userId = this.props.user;
+
     // const picture = this.state.picture;
     try {
       const x = await axios.post("http://localhost:5000/fund", {
-        user,
+        userId,
         title,
         description,
         amount

@@ -28,7 +28,7 @@ class Profile extends Component {
 
   showMyDonations = () => {
     return this.state.myStuff.data.theTransactions.map((res, i) => (
-    <div key={i}>{res.amount} ------ {res.fundId.title} <Link to={"/fund/"+res.fundId._id}>go to</Link></div>
+    <div key={i}>{res.amount} ------ {res.fundId.title} ({res.userId.name}) <Link to={"/fund/"+res.fundId._id}>go to</Link></div>
     ));
   };
 
