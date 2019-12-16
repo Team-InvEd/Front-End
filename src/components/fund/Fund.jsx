@@ -14,6 +14,16 @@ export default class Fund extends Component {
     }
   };
 
+  showDonations = () => {
+    const data = this.props.transactions
+    return (data.map((res,i)=> (
+      <div key={i}>
+        {res.amount}
+        {res.userId}
+      </div>
+    )))
+  }
+
   render() {
     console.log("=-=-=", this.props);
 
@@ -37,6 +47,8 @@ export default class Fund extends Component {
           Amount: {theFund.amount}
           <br />
           Description: {theFund.description}
+          <br />
+          Donations: {this.showDonations()}
           <br />
           <button onClick={() => this.goToForm(this.state.theID)}>
             Donate
