@@ -29,7 +29,7 @@ export default class Fund extends Component {
     return (theTransactions.map((res,i)=> (
       <div key={i}>
         {res.userId.name} <br />
-        {res.amount} <br />
+        ${res.amount} <br />
         {res.comment}
         <hr/>
       </div>
@@ -53,7 +53,7 @@ export default class Fund extends Component {
           Amount: {theFund.amount}
           <br />
           Description: {theFund.description}
-          <br />
+          <br /> <hr />
           Donations: {this.showDonations()}
           <br />
           <button onClick={() => this.goToForm(this.state.theID)}>

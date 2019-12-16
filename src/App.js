@@ -10,7 +10,7 @@ import FundList from "./components/list/FundList";
 import Calculate from "./components/calculate/Calculate";
 import Form from "./components/fund/Form";
 import Fund from "./components/fund/Fund";
-import Donate from "./components/donate/Donate";
+import Donate from "./components/donate/donate";
 import axios from "axios";
 import {
   Redirect,
@@ -80,6 +80,7 @@ class App extends Component {
   };
   render() {
     console.log(this.state.theTransactions);
+    console.log(this.state.theFunds)
     if (this.state.theFunds && this.state.theTransactions)
       return (
         <div>

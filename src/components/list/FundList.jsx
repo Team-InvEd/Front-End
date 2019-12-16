@@ -18,6 +18,8 @@ export default class FundList extends React.Component {
         <div key={i}>
           <Link to={"/fund/" + res._id}>{res.title}</Link>
           <br />
+          {res.userId.name}
+          <br />
           {res.amount}
           <br />
           {res.description}
