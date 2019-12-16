@@ -11,6 +11,7 @@ export default class FundList extends React.Component {
       this.props.locate("/donate");
     }
   };
+  componentDidMount = () => {};
   showFunds = () => {
     if (this.props.filtered.length) {
       return this.props.filtered.map((res, i) => (
