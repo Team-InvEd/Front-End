@@ -38,12 +38,8 @@ class Profile extends Component {
       return (
         <div>
           Profile <br />
-          {this.state.myStuff.data.theFunds.length ? (
-            <div>My Funds: {this.showMyFunds()}</div>
-          ) : null}
-          {this.state.myStuff.data.theTransactions.length ? (
-            <div>My Donations: {this.showMyDonations()}</div>
-          ) : null}
+          <div>My Funds: {this.showMyFunds()}</div>
+          <div>My Donations: {this.showMyDonations()}</div>
         </div>
       );
     else {
