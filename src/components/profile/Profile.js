@@ -28,7 +28,10 @@ class Profile extends Component {
 
   showMyDonations = () => {
     return this.state.myStuff.data.theTransactions.map((res, i) => (
-    <div key={i}>{res.amount} ------ {res.fundId.title} <Link to={"/fund/"+res.fundId._id}>go to</Link></div>
+      <div key={i}>
+        {res.amount} ------ {res.fundId.title}{" "}
+        <Link to={"/fund/" + res.fundId._id}>go to</Link>
+      </div>
     ));
   };
 
@@ -38,12 +41,8 @@ class Profile extends Component {
       return (
         <div>
           Profile <br />
-          {this.state.myStuff.data.theFunds.length ? (
-            <div>My Funds: {this.showMyFunds()}</div>
-          ) : null}
-          {this.state.myStuff.data.theTransactions.length ? (
-            <div>My Donations: {this.showMyDonations()}</div>
-          ) : null}
+          <div>My Funds: {this.showMyFunds()}</div>
+          <div>My Donations: {this.showMyDonations()}</div>
         </div>
       );
     else {

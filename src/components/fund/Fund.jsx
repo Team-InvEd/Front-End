@@ -19,20 +19,21 @@ export default class Fund extends Component {
       eachT => eachT.fundId === this.props.match.params.id
     );
 
-    console.log(this.props.transactions)
+    console.log(this.props.transactions);
     // let theUsers = this.props.users.find(
     //   eachU => eachU._id === theTransactions.userId
     // )
 
     // console.log(theUsers)
 
-    return (theTransactions.map((res,i)=> (
+    return theTransactions.map((res, i) => (
       <div key={i}>
-        {res.amount}
-        {res.userId.name}
+        {res.userId.name} <br />
+        {res.amount} <br />
+        {res.comment}
       </div>
-    )))
-  }
+    ));
+  };
 
   render() {
     console.log("=-=-=", this.props);
