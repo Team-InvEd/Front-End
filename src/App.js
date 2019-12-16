@@ -10,7 +10,7 @@ import FundList from "./components/list/FundList";
 import Calculate from "./components/calculate/Calculate";
 import Form from "./components/fund/Form";
 import Fund from "./components/fund/Fund";
-import Donate from "./components/donate/donate";
+import Donate from "./components/donate/Donate";
 import axios from "axios";
 import {
   Redirect,
@@ -40,11 +40,8 @@ class App extends Component {
     );
     this.setState({ theTransactions: theTransactions.data });
 
-    let theUsers = await axios.get(
-      "http://localhost:5000/api/users"
-    );
-    this.setState({ theUsers: theUsers.data })
-
+    let theUsers = await axios.get("http://localhost:5000/api/users");
+    this.setState({ theUsers: theUsers.data });
   }
   updateServer = async () => {
     const funds = await axios.get("http://localhost:5000/funds");
