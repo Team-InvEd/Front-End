@@ -37,7 +37,7 @@ class App extends Component {
     let theTransactions = await axios.get(
       "http://localhost:5000/api/transactions"
     );
-    this.setState({ theTransactions: theTransactions.data});
+    this.setState({ theTransactions: theTransactions.data });
   }
   updateServer = async () => {
     const funds = await axios.get("http://localhost:5000/funds");
@@ -76,114 +76,121 @@ class App extends Component {
   };
   render() {
     console.log(this.state);
-    if(this.state.theFunds && this.state.theTransactions)
-    return (
-      <div>
-        <nav>
-          {this.state.user ? <span>Hello {this.state.user.name}! </span> : null}
+    if (this.state.theFunds && this.state.theTransactions)
+      return (
+        <div>
+          <nav>
+            {this.state.user ? (
+              <span>Hello {this.state.user.name}! </span>
+            ) : null}
 
-          <NavLink to="/">Home |</NavLink>
-          <NavLink to="/about"> About |</NavLink>
-          {this.state.user ? (
-            <Fragment>
-              <NavLink onClick={this.logOut} to="/">
-                Log Out |{" "}
-              </NavLink>
-              <NavLink to="/profile"> Profile |</NavLink>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <NavLink to="/log-in"> Log In |</NavLink>
-              <NavLink to="/sign-up"> Sign Up |</NavLink>
-            </Fragment>
-          )}
-        </nav>
-        <Switch>
-          <Route exact path="/" render={props => <Home {...props} />} />
-          <Route
-            exact
-            path="/sign-up"
-            render={props => <SignUp {...props} setUser={this.setUser} />}
-          />
-          <Route
-            exact
-            path="/funds"
-            render={props => (
-              <FundList
-                {...props}
-                user={this.state.user}
-                locate={this.locate}
-                theFunds={this.state.theFunds}
-                filtered={this.state.filtered}
-                showFunds={this.showFunds}
-                updateSearch={this.updateSearch}
-              />
+            <NavLink to="/">Home |</NavLink>
+            <NavLink to="/about"> About |</NavLink>
+            {this.state.user ? (
+              <Fragment>
+                <NavLink onClick={this.logOut} to="/">
+                  Log Out |{" "}
+                </NavLink>
+                <NavLink to="/profile"> Profile |</NavLink>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <NavLink to="/log-in"> Log In |</NavLink>
+                <NavLink to="/sign-up"> Sign Up |</NavLink>
+              </Fragment>
             )}
-          />
+          </nav>
+          <Switch>
+            <Route exact path="/" render={props => <Home {...props} />} />
+            <Route
+              exact
+              path="/sign-up"
+              render={props => <SignUp {...props} setUser={this.setUser} />}
+            />
+            <Route
+              exact
+              path="/funds"
+              render={props => (
+                <FundList
+                  {...props}
+                  user={this.state.user}
+                  locate={this.locate}
+                  theFunds={this.state.theFunds}
+                  filtered={this.state.filtered}
+                  showFunds={this.showFunds}
+                  updateSearch={this.updateSearch}
+                />
+              )}
+            />
 
-          <Route
-            exact
-            path="/fund/:id"
-            render={props => (
-              <Fund
-                {...props}
-                user={this.state.user}
-                locate={this.locate}
-                theFunds={this.state.theFunds}
-                filtered={this.state.filtered}
-                showFunds={this.showFunds}
-                updateSearch={this.updateSearch}
-                transactions={this.state.theTransactions.theT}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/calculate"
-            render={props => (
-              <Calculate
-                {...props}
-                user={this.state.user}
-                locate={this.locate}
-              />
-            )}
-          />
+            <Route
+              exact
+              path="/fund/:id"
+              render={props => (
+                <Fund
+                  {...props}
+                  user={this.state.user}
+                  locate={this.locate}
+                  theFunds={this.state.theFunds}
+                  filtered={this.state.filtered}
+                  showFunds={this.showFunds}
+                  updateSearch={this.updateSearch}
+                  transactions={this.state.theTransactions.theT}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/calculate"
+              render={props => (
+                <Calculate
+                  {...props}
+                  user={this.state.user}
+                  locate={this.locate}
+                />
+              )}
+            />
 
-          <Route
-            exact
-            path="/form"
-            render={props => (
-              <Form
-                {...props}
-                user={this.state.user}
-                updateServer={this.updateServer}
-              />
-            )}
-          />
+            <Route
+              exact
+              path="/form"
+              render={props => (
+                <Form
+                  {...props}
+                  user={this.state.user}
+                  updateServer={this.updateServer}
+                />
+              )}
+            />
 
-          <Route
-            exact
-            path="/log-in"
-            render={props => <LogIn {...props} setUser={this.setUser} />}
-          />
-          <Route
-            exact
-            path="/profile"
-            render={props => <Profile {...props} user={this.state.user} />}
-          />
-          <Route exact path="/about" render={props => <About {...props} />} />
-          <Route
-            path="/donate/:id"
-            render={props => <Donate {...props} user={this.state.user} />}
-          />
-          <Route component={NotFound} />
-        </Switch>
-      </div>
-    )
-    else
-    return(
-    <div>loading</div>
-    )
+            <Route
+              exact
+              path="/log-in"
+              render={props => <LogIn {...props} setUser={this.setUser} />}
+            />
+            <Route
+              exact
+              path="/profile"
+              render={props => (
+                <Profile
+                  {...props}
+                  user={this.state.user}
+                  transactions={this.state.theTransactions.theT}
+                  theFunds={this.state.theFunds}
+                  filtered={this.state.filtered}
+                />
+              )}
+            />
+            <Route exact path="/about" render={props => <About {...props} />} />
+            <Route
+              path="/donate/:id"
+              render={props => <Donate {...props} user={this.state.user} />}
+            />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
+      );
+    else return <div>loading</div>;
   }
 }
 export default App;
