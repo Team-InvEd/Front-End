@@ -10,7 +10,7 @@ import FundList from "./components/list/FundList";
 import Calculate from "./components/calculate/Calculate";
 import Form from "./components/fund/Form";
 import Fund from "./components/fund/Fund";
-import Donate from "./components/donate/Donate";
+import Donate from "./components/donate/donate";
 import axios from "axios";
 import {
   Redirect,
@@ -25,7 +25,8 @@ class App extends Component {
   state = {
     where: "",
     user: null,
-    theTransactions: null
+    theTransactions: null,
+    theUsers: null
   };
 
   async componentDidMount() {
@@ -38,6 +39,12 @@ class App extends Component {
       "http://localhost:5000/api/transactions"
     );
     this.setState({ theTransactions: theTransactions.data });
+
+    let theUsers = await axios.get(
+      "http://localhost:5000/api/users"
+    );
+    this.setState({ theUsers: theUsers.data })
+
   }
   updateServer = async () => {
     const funds = await axios.get("http://localhost:5000/funds");
@@ -131,6 +138,7 @@ class App extends Component {
                 <Fund
                   {...props}
                   user={this.state.user}
+                  users={this.state.theUsers}
                   locate={this.locate}
                   theFunds={this.state.theFunds}
                   filtered={this.state.filtered}
