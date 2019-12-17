@@ -13,6 +13,7 @@ import Fund from "./components/fund/Fund";
 import Donate from "./components/donate/Donate";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Logo from "./graphics/leaf1.png";
 import {
   Redirect,
   BrowserRouter,
@@ -66,6 +67,7 @@ class App extends Component {
     await actions.logOut();
     this.setUser(null);
     this.setState({ user: null });
+    this.interAction("Logged out successfully.", true);
   };
   locate = exactly => {
     this.setState({
@@ -92,149 +94,176 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.theTransactions);
-    console.log(this.state.theFunds);
     if (this.state.theFunds && this.state.theTransactions)
       return (
         <div>
-          <nav>
-            {this.state.user ? (
-              <span>Hello {this.state.user.name}! </span>
-            ) : null}
-            <NavLink to="/">Home |</NavLink>
-            <NavLink to="/about"> About |</NavLink>
-            {this.state.user ? (
-              <Fragment>
-                <NavLink onClick={this.logOut} to="/">
-                  Log Out |{" "}
-                </NavLink>
-                <NavLink to="/profile"> Profile |</NavLink>
-              </Fragment>
-            ) : (
-              <Fragment>
-                <NavLink to="/log-in"> Log In |</NavLink>
-                <NavLink to="/sign-up"> Sign Up |</NavLink>
-              </Fragment>
-            )}
-            <br />{" "}
-            {this.state.message && (
-              <div className="alert alert-success">{this.state.message}</div>
-            )}
-            {this.state.error && (
-              <div className="alert alert-danger">{this.state.error}</div>
-            )}
+          <nav className="navBox">
+            <div className="leftNav">
+              <NavLink to="/" className="btn btn-link leftNav">
+                <img src={Logo} className="logo" /> invEd
+              </NavLink>
+            </div>
+            <div className="rightNav">
+              {this.state.user ? (
+                <span>Logged in as {this.state.user.name}</span>
+              ) : null}
+              <NavLink to="/about" className="btn btn-link">
+                {" "}
+                About
+              </NavLink>
+              {this.state.user ? (
+                <Fragment>
+                  <NavLink
+                    onClick={this.logOut}
+                    to="/"
+                    className="btn btn-link"
+                  >
+                    {" "}
+                    Log Out
+                  </NavLink>
+                  <NavLink to="/profile" className="btn btn-link">
+                    {" "}
+                    Profile
+                  </NavLink>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <NavLink to="/log-in" className="btn btn-link">
+                    {" "}
+                    Log In{" "}
+                  </NavLink>
+                  <NavLink to="/sign-up" className="btn btn-link">
+                    {" "}
+                    Sign Up{" "}
+                  </NavLink>
+                </Fragment>
+              )}{" "}
+            </div>
           </nav>
-          <Switch>
-            <Route exact path="/" render={props => <Home {...props} />} />
-            <Route
-              exact
-              path="/sign-up"
-              render={props => (
-                <SignUp
-                  {...props}
-                  setUser={this.setUser}
-                  interAction={this.interAction}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/funds"
-              render={props => (
-                <FundList
-                  {...props}
-                  user={this.state.user}
-                  locate={this.locate}
-                  theFunds={this.state.theFunds}
-                  filtered={this.state.filtered}
-                  showFunds={this.showFunds}
-                  updateSearch={this.updateSearch}
-                  transactions={this.state.theTransactions.theT}
-                />
-              )}
-            />
+          <br />{" "}
+          {this.state.message && (
+            <div className="alert alert-success">{this.state.message}</div>
+          )}
+          {this.state.error && (
+            <div className="alert alert-danger">{this.state.error}</div>
+          )}
+          <div className="mainBox">
+            <Switch>
+              <Route exact path="/" render={props => <Home {...props} />} />
+              <Route
+                exact
+                path="/sign-up"
+                render={props => (
+                  <SignUp
+                    {...props}
+                    setUser={this.setUser}
+                    interAction={this.interAction}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/funds"
+                render={props => (
+                  <FundList
+                    {...props}
+                    user={this.state.user}
+                    locate={this.locate}
+                    theFunds={this.state.theFunds}
+                    filtered={this.state.filtered}
+                    showFunds={this.showFunds}
+                    updateSearch={this.updateSearch}
+                    transactions={this.state.theTransactions.theT}
+                  />
+                )}
+              />
 
-            <Route
-              exact
-              path="/fund/:id"
-              render={props => (
-                <Fund
-                  {...props}
-                  user={this.state.user}
-                  users={this.state.theUsers}
-                  locate={this.locate}
-                  theFunds={this.state.theFunds}
-                  filtered={this.state.filtered}
-                  showFunds={this.showFunds}
-                  updateSearch={this.updateSearch}
-                  transactions={this.state.theTransactions.theT}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/calculate"
-              render={props => (
-                <Calculate
-                  {...props}
-                  user={this.state.user}
-                  locate={this.locate}
-                />
-              )}
-            />
+              <Route
+                exact
+                path="/fund/:id"
+                render={props => (
+                  <Fund
+                    {...props}
+                    user={this.state.user}
+                    users={this.state.theUsers}
+                    locate={this.locate}
+                    theFunds={this.state.theFunds}
+                    filtered={this.state.filtered}
+                    showFunds={this.showFunds}
+                    updateSearch={this.updateSearch}
+                    transactions={this.state.theTransactions.theT}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/calculate"
+                render={props => (
+                  <Calculate
+                    {...props}
+                    user={this.state.user}
+                    locate={this.locate}
+                  />
+                )}
+              />
 
-            <Route
-              exact
-              path="/form"
-              render={props => (
-                <Form
-                  {...props}
-                  user={this.state.user}
-                  updateServer={this.updateServer}
-                />
-              )}
-            />
+              <Route
+                exact
+                path="/form"
+                render={props => (
+                  <Form
+                    {...props}
+                    user={this.state.user}
+                    updateServer={this.updateServer}
+                  />
+                )}
+              />
 
-            <Route
-              exact
-              path="/log-in"
-              render={props => (
-                <LogIn
-                  {...props}
-                  setUser={this.setUser}
-                  interAction={this.interAction}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/profile"
-              render={props => (
-                <Profile
-                  {...props}
-                  user={this.state.user}
-                  transactions={this.state.theTransactions.theT}
-                  theFunds={this.state.theFunds}
-                  filtered={this.state.filtered}
-                />
-              )}
-            />
-            <Route exact path="/about" render={props => <About {...props} />} />
-            <Route
-              path="/donate/:id"
-              render={props => (
-                <Donate
-                  {...props}
-                  user={this.state.user}
-                  interAction={this.interAction}
-                />
-              )}
-            />
-            <Route component={NotFound} />
-          </Switch>
+              <Route
+                exact
+                path="/log-in"
+                render={props => (
+                  <LogIn
+                    {...props}
+                    setUser={this.setUser}
+                    interAction={this.interAction}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/profile"
+                render={props => (
+                  <Profile
+                    {...props}
+                    user={this.state.user}
+                    transactions={this.state.theTransactions.theT}
+                    theFunds={this.state.theFunds}
+                    filtered={this.state.filtered}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/about"
+                render={props => <About {...props} />}
+              />
+              <Route
+                path="/donate/:id"
+                render={props => (
+                  <Donate
+                    {...props}
+                    user={this.state.user}
+                    interAction={this.interAction}
+                  />
+                )}
+              />
+              <Route component={NotFound} />
+            </Switch>
+          </div>
         </div>
       );
-    else return <div>loading</div>;
+    else return <div>Loading...</div>;
   }
 }
 Math.formatNum = x => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

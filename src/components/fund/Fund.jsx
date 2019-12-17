@@ -28,17 +28,14 @@ export default class Fund extends Component {
 
     return theTransactions.map((res, i) => (
       <div key={i}>
-        {res.userId.name} <br />
-        ${res.amount} <br />
+        {res.userId.name} <br />${res.amount} <br />
         {res.comment}
-        <hr/>
+        <hr />
       </div>
     ));
   };
 
   render() {
-    console.log("=-=-=", this.props);
-
     let theFund = this.props.theFunds.find(
       theFund => theFund._id === this.state.theID
     );
@@ -50,8 +47,8 @@ export default class Fund extends Component {
           <br />
           Title: {theFund.title}
           <br />
-          Picture: <img src={theFund.imageUrl} width="200px" alt=""/>
-          <br/>
+          Picture: <img src={theFund.imageUrl} width="200px" alt="" />
+          <br />
           Amount: {theFund.amount}
           <br />
           Description: {theFund.description}

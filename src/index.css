@@ -6,6 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: "Varela Round", sans-serif !important;
 }
 
 code {
@@ -31,4 +32,27 @@ code {
 }
 .deleteX:hover {
   color: white;
+}
+.logo {
+  width: 50px;
+  height: 50px;
+}
+.navBox {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px !important;
+  padding: 10px;
+  border-bottom: 1px solid silver;
+}
+.mainBox {
+  margin-top: 50px;
+}
+.leftNav {
+  color: grey !important;
+  font-size: 30px !important;
+  text-decoration: none !important;
 }

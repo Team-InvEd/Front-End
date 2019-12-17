@@ -7,10 +7,6 @@ class Profile extends Component {
     myStuff: null
   };
   async componentDidMount() {
-    // if (!this.props.user.email) {
-    //   this.props.history.push("/log-in");
-    // }
-
     let myStuff = await Axios.get("http://localhost:5000/myStuff", {
       withCredentials: true
     });
