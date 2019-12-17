@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Fund from "./Fund";
+import service from "../../api/service"
+
 export default class Form extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +11,8 @@ export default class Form extends Component {
       amount: 0,
       description: "",
       showForm: true,
-      showFund: false
+      showFund: false,
+      imageUrl: ""
       // picture: ""
     };
   }
@@ -20,6 +23,7 @@ export default class Form extends Component {
     const description = this.state.description;
     const amount = this.state.amount;
     const user = this.props.user;
+    const imageUrl = this.state.imageUrl
 
     // const picture = this.state.picture;
     try {
@@ -27,7 +31,8 @@ export default class Form extends Component {
         user,
         title,
         description,
-        amount
+        amount,
+        imageUrl
       }, {withCredentials:true});
       console.log(x);
       // this.props.getData();
@@ -36,6 +41,7 @@ export default class Form extends Component {
           title: x.data.title,
           amount: x.data.amount,
           description: x.data.description,
+          imageUrl: x.data.imageUrl,
           showForm: false,
           showFund: true
         },
@@ -53,6 +59,29 @@ export default class Form extends Component {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
+
+
+  // this method handles just the file upload
+  handleFileUpload = e => {
+    console.log("The file to be uploaded is: ", e.target.files[0]);
+
+    const uploadData = new FormData();
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new thing in '/api/things/create' POST route
+    uploadData.append("imageUrl", e.target.files[0]);
+    
+    service.handleUpload(uploadData)
+    .then(response => {
+        // console.log('response is: ', response);
+        // after the console.log we can see that response carries 'secure_url' which we can use to update the state 
+        this.setState({ imageUrl: response.secure_url } );
+      })
+      .catch(err => {
+        console.log("Error while uploading the file: ", err);
+      });
+}
+
+
 
   render() {
     return (
@@ -83,14 +112,11 @@ export default class Form extends Component {
               onChange={e => this.handleChange(e)}
             />{" "}
             <br />
-            {/* <label>Picture</label>
-            <input
-              type="text"
-              name="picture"
-              value={this.state.picture}
-              onChange={e => this.handleChange(e)}
-            />{" "}
-            <br /> */}
+            <label>Picture</label>
+            <input 
+                    type="file" 
+                    onChange={(e) => this.handleFileUpload(e)} /> 
+
             <button type="submit">Create InVed Fund</button>
           </form>
         ) : null}

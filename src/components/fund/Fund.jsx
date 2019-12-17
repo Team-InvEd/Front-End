@@ -50,6 +50,8 @@ export default class Fund extends Component {
           <br />
           Title: {theFund.title}
           <br />
+          Picture: <img src={theFund.imageUrl} width="200px" alt=""/>
+          <br/>
           Amount: {theFund.amount}
           <br />
           Description: {theFund.description}
