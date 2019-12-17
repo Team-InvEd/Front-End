@@ -20,8 +20,16 @@ export default class Donate extends Component {
         comment
       });
       this.props.history.push("/funds");
+      this.props.interAction(
+        `Your donation of ${amount}$ has been recieved.`,
+        true
+      );
     } catch (err) {
       console.log(err);
+      this.props.interAction(
+        "The donation has not been recieved. Please fill all required fields and try again.",
+        false
+      );
     }
   };
   handleChange = e => {

@@ -12,6 +12,7 @@ import Form from "./components/fund/Form";
 import Fund from "./components/fund/Fund";
 import Donate from "./components/donate/Donate";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Redirect,
   BrowserRouter,
@@ -26,7 +27,9 @@ class App extends Component {
     where: "",
     user: null,
     theTransactions: null,
-    theUsers: null
+    theUsers: null,
+    message: "",
+    error: ""
   };
 
   async componentDidMount() {
@@ -78,6 +81,16 @@ class App extends Component {
       filtered: fList
     });
   };
+  interAction = (str, ok) => {
+    if (ok) {
+      this.setState({ message: str, error: "" });
+      setTimeout(() => this.setState({ message: "" }), 4000);
+    } else {
+      this.setState({ message: "", error: str });
+      setTimeout(() => this.setState({ error: "" }), 4000);
+    }
+  };
+
   render() {
     console.log(this.state.theTransactions);
     console.log(this.state.theFunds);
@@ -88,7 +101,6 @@ class App extends Component {
             {this.state.user ? (
               <span>Hello {this.state.user.name}! </span>
             ) : null}
-
             <NavLink to="/">Home |</NavLink>
             <NavLink to="/about"> About |</NavLink>
             {this.state.user ? (
@@ -104,13 +116,26 @@ class App extends Component {
                 <NavLink to="/sign-up"> Sign Up |</NavLink>
               </Fragment>
             )}
+            <br />{" "}
+            {this.state.message && (
+              <div className="alert alert-success">{this.state.message}</div>
+            )}
+            {this.state.error && (
+              <div className="alert alert-danger">{this.state.error}</div>
+            )}
           </nav>
           <Switch>
             <Route exact path="/" render={props => <Home {...props} />} />
             <Route
               exact
               path="/sign-up"
-              render={props => <SignUp {...props} setUser={this.setUser} />}
+              render={props => (
+                <SignUp
+                  {...props}
+                  setUser={this.setUser}
+                  interAction={this.interAction}
+                />
+              )}
             />
             <Route
               exact
@@ -173,7 +198,13 @@ class App extends Component {
             <Route
               exact
               path="/log-in"
-              render={props => <LogIn {...props} setUser={this.setUser} />}
+              render={props => (
+                <LogIn
+                  {...props}
+                  setUser={this.setUser}
+                  interAction={this.interAction}
+                />
+              )}
             />
             <Route
               exact
@@ -191,7 +222,13 @@ class App extends Component {
             <Route exact path="/about" render={props => <About {...props} />} />
             <Route
               path="/donate/:id"
-              render={props => <Donate {...props} user={this.state.user} />}
+              render={props => (
+                <Donate
+                  {...props}
+                  user={this.state.user}
+                  interAction={this.interAction}
+                />
+              )}
             />
             <Route component={NotFound} />
           </Switch>

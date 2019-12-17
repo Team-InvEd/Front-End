@@ -26,33 +26,58 @@ class Profile extends Component {
     ));
   };
   showMyDonations = () => {
-    console.log(this.state.myStuff.data);
     return this.state.myStuff.data.theTransactions.map((res, i) => {
       if (res.fundId) {
         return (
           <div key={i}>
-            ${res.amount} ------ {res.fundId.title} ({res.fundId.userName}){" "}
-            <Link to={"/fund/" + res.fundId._id}>go to</Link>
+            <span className="cash">${res.amount}</span> ------{" "}
+            <Link to={"/fund/" + res.fundId._id}>{res.fundId.title}</Link> (
+            {res.fundId.userName})
           </div>
         );
       } else {
-        return <div key={i}>${res.amount} ------ Fund has been removed. </div>;
+        return (
+          <div key={i}>
+            <span className="cash">${res.amount}</span> ------{" "}
+            <span style={{ fontStyle: "italic", color: "grey" }}>
+              Fund has been removed.{" "}
+            </span>
+          </div>
+        );
       }
     });
   };
 
   render() {
-    console.log(this.state);
+    console.log(this.state.myStuff);
     if (this.state.myStuff)
       return (
         <div>
           Profile <br />
-          <div>My Funds: {this.showMyFunds()}</div>
-          <div>My Donations: {this.showMyDonations()}</div>
+          {this.state.myStuff.data.theFunds.length > 0 ? (
+            <div className="alert alert-dark">
+              My Funds: {this.showMyFunds()}
+            </div>
+          ) : (
+            <div className="alert alert-secondary">
+              {" "}
+              You haven't created any funds yet.{" "}
+            </div>
+          )}
+          {this.state.myStuff.data.theTransactions.length > 0 ? (
+            <div className="alert alert-dark">
+              My Donations: {this.showMyDonations()}
+            </div>
+          ) : (
+            <div className="alert alert-secondary">
+              {" "}
+              You haven't made any donations yet.{" "}
+            </div>
+          )}
         </div>
       );
     else {
-      return <div>Loading...</div>;
+      return <div>Loading Profile...</div>;
     }
   }
 }

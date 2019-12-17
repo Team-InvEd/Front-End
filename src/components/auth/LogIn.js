@@ -5,10 +5,29 @@ class LogIn extends Component {
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
   handleSubmit = async e => {
     e.preventDefault();
-    let user = await actions.logIn(this.state);
-    this.props.setUser({ ...user.data });
-    this.props.history.push("/");
+    try {
+      let user = await actions.logIn(this.state);
+      this.props.setUser({ ...user.data });
+      this.props.history.push("/");
+      this.props.interAction("Logged In Successfully.", true);
+    } catch (err) {
+      console.log("=-=-=-=-=-", err.response.data);
+      if (err.response.data === "Unauthorized") {
+        this.props.interAction(
+          "Email or password is incorrect, please check credentials and try again.",
+          false
+        );
+      } else if (err.response.data === "Bad Request") {
+        this.props.interAction(
+          "Please make sure to enter an email and password.",
+          false
+        );
+      } else {
+        this.props.interAction("Unknown error. Please try again.", false);
+      }
+    }
   };
+
   render() {
     return (
       <Fragment>

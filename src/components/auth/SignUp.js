@@ -7,9 +7,20 @@ class SignUp extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    let user = await actions.signUp(this.state);
-    this.props.setUser({ ...user.data });
-    this.props.history.push("/");
+    try {
+      let user = await actions.signUp(this.state);
+      this.props.setUser({ ...user.data });
+      this.props.history.push("/");
+      this.props.interAction(
+        "You've been successfully registered and logged in.",
+        true
+      );
+    } catch (err) {
+      this.props.interAction(
+        "Unexpected error. Please try again later.",
+        false
+      );
+    }
   };
   render() {
     return (
