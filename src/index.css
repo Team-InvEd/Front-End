@@ -21,3 +21,14 @@ code {
 .alert-secondary {
   font-style: italic !important;
 }
+
+.removed {
+  font-style: italic;
+  color: grey;
+}
+.deleteX {
+  color: tomato;
+}
+.deleteX:hover {
+  color: white;
+}

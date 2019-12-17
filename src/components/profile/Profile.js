@@ -21,7 +21,9 @@ class Profile extends Component {
   showMyFunds = () => {
     return this.state.myStuff.data.theFunds.map((res, i) => (
       <div key={i}>
-        <Link to={"/fund/" + res._id}>{res.title}</Link>
+        <span className="cash">${Math.formatNum(res.amount)}</span> for{" "}
+        <Link to={"/fund/" + res._id}>{res.title}</Link>{" "}
+        <span className="btn btn-link btn-sm deleteX">X</span>
       </div>
     ));
   };
@@ -30,7 +32,7 @@ class Profile extends Component {
       if (res.fundId) {
         return (
           <div key={i}>
-            <span className="cash">${res.amount}</span> ------{" "}
+            <span className="cash">${Math.formatNum(res.amount)}</span> to{" "}
             <Link to={"/fund/" + res.fundId._id}>{res.fundId.title}</Link> (
             {res.fundId.userName})
           </div>
@@ -38,10 +40,8 @@ class Profile extends Component {
       } else {
         return (
           <div key={i}>
-            <span className="cash">${res.amount}</span> ------{" "}
-            <span style={{ fontStyle: "italic", color: "grey" }}>
-              Fund has been removed.{" "}
-            </span>
+            <span className="cash">${res.amount}</span> to{" "}
+            <span className="removed">Fund is not longer exists. </span>
           </div>
         );
       }
