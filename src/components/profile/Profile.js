@@ -25,11 +25,20 @@ class Profile extends Component {
       </div>
     ));
   };
-
   showMyDonations = () => {
-    return this.state.myStuff.data.theTransactions.map((res, i) => (
-    <div key={i}>${res.amount} ------ {res.fundId.title} ({res.fundId.userName}) <Link to={"/fund/"+res.fundId._id}>go to</Link></div>
-    ));
+    console.log(this.state.myStuff.data);
+    return this.state.myStuff.data.theTransactions.map((res, i) => {
+      if (res.fundId) {
+        return (
+          <div key={i}>
+            ${res.amount} ------ {res.fundId.title} ({res.fundId.userName}){" "}
+            <Link to={"/fund/" + res.fundId._id}>go to</Link>
+          </div>
+        );
+      } else {
+        return <div key={i}>${res.amount} ------ Fund has been removed. </div>;
+      }
+    });
   };
 
   render() {
