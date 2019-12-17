@@ -22,7 +22,7 @@ export default class FundList extends React.Component {
           <br />
           {res.amount}
           <br />
-          {res.description}
+          {/* {res.description} */}
           <br />
           <button onClick={() => this.goToForm(res._id)}>Donate</button>
           <hr />

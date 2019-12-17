@@ -8,15 +8,30 @@ class Home extends Component {
   }
   render() {
     return (
-      <div>
-        <h1>InvEd</h1>
-        <br />
-        <Link to="/funds">
-          <button className="btn btn-success">Search Funds</button>
-        </Link>{" "}
-        <Link to="/calculate">
-          <button className="btn btn-info">Get Started</button>
-        </Link>
+      <div className="homeBox">
+        <div className="leftHome">
+          <span style={{ fontSize: "30px" }}>
+            Free fundraising for the people and causes you care about.
+          </span>
+          <br />
+          <br /> <br />
+          <Link to="/funds">
+            <button className="btn btn-success">Search Funds</button>
+          </Link>{" "}
+          <Link to="/calculate">
+            <button className="btn btn-info">Get Started</button>
+          </Link>
+          <br />
+          {!this.props.user && (
+            <div>
+              Already a member?{" "}
+              <Link to="/log-in">
+                <span className="btn-link">Log in</span>
+              </Link>{" "}
+            </div>
+          )}
+        </div>
+        <div className="rightHome"> </div>
       </div>
     );
   }

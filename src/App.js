@@ -100,7 +100,8 @@ class App extends Component {
           <nav className="navBox">
             <div className="leftNav">
               <NavLink to="/" className="btn btn-link leftNav">
-                <img src={Logo} className="logo" /> invEd
+                <img src={Logo} className="logo" />
+                invEd
               </NavLink>
             </div>
             <div className="rightNav">
@@ -113,17 +114,18 @@ class App extends Component {
               </NavLink>
               {this.state.user ? (
                 <Fragment>
+                  <NavLink to="/profile" className="btn btn-link">
+                    {" "}
+                    Profile
+                  </NavLink>
                   <NavLink
                     onClick={this.logOut}
                     to="/"
                     className="btn btn-link"
+                    style={{ color: "red" }}
                   >
                     {" "}
                     Log Out
-                  </NavLink>
-                  <NavLink to="/profile" className="btn btn-link">
-                    {" "}
-                    Profile
                   </NavLink>
                 </Fragment>
               ) : (
@@ -141,15 +143,25 @@ class App extends Component {
             </div>
           </nav>
           <br />{" "}
-          {this.state.message && (
-            <div className="alert alert-success">{this.state.message}</div>
-          )}
-          {this.state.error && (
-            <div className="alert alert-danger">{this.state.error}</div>
-          )}
           <div className="mainBox">
+            {this.state.message && (
+              <div className="alert alert-success">{this.state.message}</div>
+            )}
+            {this.state.error && (
+              <div className="alert alert-danger">{this.state.error}</div>
+            )}
             <Switch>
-              <Route exact path="/" render={props => <Home {...props} />} />
+              <Route
+                exact
+                path="/"
+                render={props => (
+                  <Home
+                    {...props}
+                    user={this.state.user}
+                    locate={this.locate}
+                  />
+                )}
+              />
               <Route
                 exact
                 path="/sign-up"
