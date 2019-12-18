@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { Card } from "react-bootstrap";
+import { AiOutlineSafety } from "react-icons/ai";
 
 export default class Donate extends Component {
   state = {
@@ -76,9 +77,13 @@ export default class Donate extends Component {
               )}
             </Card.Text>
             {this.state.amount > 0 ? (
-              <button onClick={this.submitDonation}>Place donation</button>
+              <button onClick={this.submitDonation}>
+                <AiOutlineSafety /> Place donation
+              </button>
             ) : (
-              <button disabled>Place donation</button>
+              <button disabled>
+                <AiOutlineSafety /> Place donation
+              </button>
             )}
           </Card.Body>
         </Card>

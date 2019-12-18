@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+// import { IoMdArrowRoundForward } from "react-icons/fa";
+import { AiOutlineDoubleRight } from "react-icons/ai";
 
 export default class Fund extends Component {
   state = {
