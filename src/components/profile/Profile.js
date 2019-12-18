@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
-
+import { Alert } from "react-bootstrap";
 class Profile extends Component {
   state = {
     myStuff: null
@@ -16,22 +16,22 @@ class Profile extends Component {
 
   showMyFunds = () => {
     return this.state.myStuff.data.theFunds.map((res, i) => (
-      <div key={i}>
+      <Alert key={i} variant="success" className="thePanel">
         <span className="cash">${Math.formatNum(res.amount)}</span> for{" "}
         <Link to={"/fund/" + res._id}>{res.title}</Link>{" "}
         <span className="btn btn-link btn-sm deleteX">X</span>
-      </div>
+      </Alert>
     ));
   };
   showMyDonations = () => {
     return this.state.myStuff.data.theTransactions.map((res, i) => {
       if (res.fundId) {
         return (
-          <div key={i}>
+          <Alert key={i} variant="success" className="thePanel">
             <span className="cash">${Math.formatNum(res.amount)}</span> to{" "}
             <Link to={"/fund/" + res.fundId._id}>{res.fundId.title}</Link> (
             {res.fundId.userName})
-          </div>
+          </Alert>
         );
       } else {
         return (
@@ -45,14 +45,13 @@ class Profile extends Component {
   };
 
   render() {
-    console.log(this.state.myStuff);
     if (this.state.myStuff)
       return (
         <div>
           Profile <br />
           {this.state.myStuff.data.theFunds.length > 0 ? (
-            <div className="alert alert-dark">
-              My Funds: {this.showMyFunds()}
+            <div class="panel-group">
+              <div class="panel panel-success">My </div> {this.showMyFunds()}
             </div>
           ) : (
             <div className="alert alert-secondary">
@@ -61,8 +60,9 @@ class Profile extends Component {
             </div>
           )}
           {this.state.myStuff.data.theTransactions.length > 0 ? (
-            <div className="alert alert-dark">
-              My Donations: {this.showMyDonations()}
+            <div class="panel-group">
+              <div class="panel panel-success">My donations: </div>
+              {this.showMyDonations()}
             </div>
           ) : (
             <div className="alert alert-secondary">

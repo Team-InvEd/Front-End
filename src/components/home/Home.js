@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 class Home extends Component {
   async componentDidMount() {
     //actions.test()
-  }
+    
+}
   render() {
     return (
       <div className="homeBox">
@@ -31,7 +32,9 @@ class Home extends Component {
             </div>
           )}
         </div>
-        <div className="rightHome"> </div>
+        <div className="rightHome"> 
+        
+        </div>
       </div>
     );
   }

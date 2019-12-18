@@ -13,6 +13,7 @@ import Fund from "./components/fund/Fund";
 import Donate from "./components/donate/Donate";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import Logo from "./graphics/leaf1.png";
 import {
   Redirect,
@@ -145,7 +146,10 @@ class App extends Component {
           <br />{" "}
           <div className="mainBox">
             {this.state.message && (
-              <div className="alert alert-success">{this.state.message}</div>
+              <div className="alert alert-success">
+                <strong>Update: </strong>
+                {this.state.message}
+              </div>
             )}
             {this.state.error && (
               <div className="alert alert-danger">{this.state.error}</div>
