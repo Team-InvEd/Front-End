@@ -10,7 +10,7 @@ import FundList from "./components/list/FundList";
 import Calculate from "./components/calculate/Calculate";
 import Form from "./components/fund/Form";
 import Fund from "./components/fund/Fund";
-import Donate from "./components/donate/Donate";
+import Donate from "./components/donate/donate";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
