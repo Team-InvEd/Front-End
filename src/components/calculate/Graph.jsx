@@ -50,7 +50,7 @@ export default class Graph extends Component {
     return (
       <BarChart
         isAnimationActive={true}
-        width={1200}
+        width={800}
         height={400}
         //    data={this.state.dataArr}
         data={dataArr}
@@ -64,13 +64,17 @@ export default class Graph extends Component {
         />
         <YAxis />
         <Tooltip />
-        <Bar type="monotone" dataKey="Current Cost" fill="black" barSize={30}>
+        <Bar 
+        type="monotone" 
+        dataKey="Current Cost" 
+        fill="#bee0ff" 
+        barSize={30}>
           <LabelList dataKey="Current Cost Label" position="left" />
         </Bar>
         <Bar
           type="monotone"
           dataKey="Future Cost"
-          fill="rgb(159, 229, 255)"
+          fill="#c8ffbe"
           barSize={30}
         >
           <LabelList dataKey="Future Cost Label" position="right" />

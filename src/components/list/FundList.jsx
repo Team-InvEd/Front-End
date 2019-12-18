@@ -41,6 +41,14 @@ export default class FundList extends React.Component {
       ));
     }
   };
+  goToForm = () => {
+    if (this.props.user) {
+      this.props.history.push("/calculate");
+    } else {
+      this.props.history.push("/log-in");
+      this.props.locate("/calculate");
+    }
+  };
   render() {
     return (
       <React.Fragment>
@@ -66,7 +74,7 @@ export default class FundList extends React.Component {
               <Search search={this.props.updateSearch} />
             </div>
             <div>
-              <button className="btn create">
+              <button onClick={this.goToForm} className="btn create">
                 <img src={Logo2} className="logo2" />
                 Create a new Fund
               </button>

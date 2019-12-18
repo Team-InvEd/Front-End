@@ -130,3 +130,10 @@ code {
   padding-left: 200px;
   text-align: left;
 }
+
+.calc-body {
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+  padding-left: 25px
+}

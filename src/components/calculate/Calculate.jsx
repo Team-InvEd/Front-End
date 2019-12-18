@@ -176,7 +176,7 @@ export default class Calculate extends Component {
   render() {
     console.log(this.props);
     return (
-      <div>
+      <div className="calc-body">
         <form onSubmit={this.futureCost}>
           {/* Who are you raising money for?{" "}
           <select>
