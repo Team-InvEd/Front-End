@@ -145,13 +145,16 @@ export default class Calculate extends Component {
     const priv = this.state.futurePrivCost
     const calculations = {inState, outState, priv}
     const id = this.props.user._id
-    
+    console.log(calculations)
     try {
       let x = await axios.post("http://localhost:5000/user", {
         id,
         calculations
       }, {withCredentials:true})
-      console.log(x, '9090-=-=-l;l;lkjkj')
+      console.log(x, '9090-=-=-l;l;lkjkj'); 
+      this.props.addCalcToUser(x)  
+      this.props.history.push("/form")
+      
       // this.setState(
       //   {
       //     title: x.data.title,

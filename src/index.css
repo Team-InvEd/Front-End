@@ -102,3 +102,10 @@ code {
   width: 400px;
   outline: none;
 }
+
+.form-body {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 200px;
+  text-align: left;
+}

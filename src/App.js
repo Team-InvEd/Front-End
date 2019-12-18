@@ -54,6 +54,10 @@ class App extends Component {
       filtered: funds.data.theFunds
     });
   };
+
+  addCalcToUser = user =>{
+    this.setState({user: user.data})
+  }
   setUser = user => {
     this.setState({ user }, () => {
       if (this.state.where) {
@@ -215,6 +219,7 @@ class App extends Component {
                 render={props => (
                   <Calculate
                     {...props}
+                    addCalcToUser={this.addCalcToUser}
                     user={this.state.user}
                     locate={this.locate}
                   />
