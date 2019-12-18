@@ -47,10 +47,10 @@ export default class Donate extends Component {
       <div>
         <Card>
           <Card.Header>
-            <h3>#Donation</h3>
+            <h3>How much would you like to donate?</h3>
           </Card.Header>
           <Card.Body>
-            <Card.Title>How much would you like to donate?</Card.Title>
+            <Card.Title></Card.Title>
             <Card.Text>
               <input
                 onChange={this.handleChange}
