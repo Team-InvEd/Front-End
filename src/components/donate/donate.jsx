@@ -46,7 +46,7 @@ export default class Donate extends Component {
     console.log(this.props);
     return (
       <div>
-        <Card>
+        <Card style={{ width: "80%", margin: "0 auto" }}>
           <Card.Header>
             <h3>How much would you like to donate?</h3>
           </Card.Header>
