@@ -139,14 +139,40 @@ export default class Calculate extends Component {
       });
     }
   };
-  goToForm = () => {
-    if (this.props.user) {
-      this.props.history.push("/form");
-    } else {
-      this.props.history.push("/log-in");
-      this.props.locate("/form");
+  goToForm = async () => {
+    const inState = this.state.futureInStateCost
+    const outState = this.state.futureOutStateCost
+    const priv = this.state.futurePrivCost
+    const calculations = {inState, outState, priv}
+    const id = this.props.user._id
+    console.log(calculations)
+    try {
+      let x = await axios.post("http://localhost:5000/user", {
+        id,
+        calculations
+      }, {withCredentials:true})
+      console.log(x, '9090-=-=-l;l;lkjkj'); 
+      this.props.addCalcToUser(x)  
+      this.props.history.push("/form")
+      
+      // this.setState(
+      //   {
+      //     title: x.data.title,
+      //     amount: x.data.amount,
+      //     description: x.data.description,
+      //     imageUrl: x.data.imageUrl,
+      //     showForm: false,
+      //     showFund: true
+      //   },
+      //   () => {
+      //     this.p
+    } catch (err) {
+      console.log(err);
     }
-  };
+    
+
+    } 
+
   render() {
     console.log(this.props);
     return (

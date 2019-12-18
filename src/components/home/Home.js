@@ -8,6 +8,15 @@ class Home extends Component {
   async componentDidMount() {
     //actions.test()
   }
+  goToForm = () => {
+    if (this.props.user) {
+      this.props.history.push("/calculate");
+    } else {
+      this.props.history.push("/log-in");
+      this.props.locate("/calculate");
+    }
+  };
+
   render() {
     return (
       <div className="homeBox">
@@ -22,12 +31,10 @@ class Home extends Component {
               <AiOutlineSearch /> Search Funds
             </button>
           </Link>{" "}
-          <Link to="/calculate">
-            <button className="btn create">
-              <img src={Logo2} className="logo2" />
-              Create a new Fund
-            </button>
-          </Link>
+          <button onClick={this.goToForm} className="btn create">
+            <img src={Logo2} className="logo2" />
+            Create a new Fund
+          </button>
           <br />
           {!this.props.user && (
             <div>

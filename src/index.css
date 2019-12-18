@@ -123,3 +123,10 @@ code {
 .search:hover {
   background-color: #7cbdd1 !important;
 }
+
+.form-body {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 200px;
+  text-align: left;
+}

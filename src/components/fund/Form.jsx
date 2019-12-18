@@ -19,6 +19,9 @@ export default class Form extends Component {
     };
   }
 
+  // componentDidMount = () => this.showCalculations
+  
+
   handleFormSubmit = async e => {
     e.preventDefault();
     const title = this.state.title;
@@ -89,6 +92,24 @@ export default class Form extends Component {
       });
   };
 
+  showCalculations = () => {
+    
+    if (this.props.user.calculations) {
+      const inState = this.props.user.calculations.inState
+      const outState = this.props.user.calculations.outState
+      const priv = this.props.user.calculations.priv
+      return(
+          <div>
+          In-State: ${inState} <br /> <br />
+          Out-of-State: ${outState} <br /> <br />
+          Private: ${priv} <br /> <br />
+          </div>
+        )
+    } else {
+      return <div>Loading</div>
+    }
+  }
+
   render() {
     return (
       <div>
@@ -98,10 +119,10 @@ export default class Form extends Component {
               <Card.Header>
                 <h3>Create a new fund</h3>
               </Card.Header>
-              <Card.Body>
-                <Card.Title>Title</Card.Title>
+              <Card.Body className="form-body">
                 <Card.Text>
                   <form onSubmit={this.handleFormSubmit}>
+                    <label>Title:</label>{"     "}
                     <input
                       type="text"
                       name="title"
@@ -109,6 +130,7 @@ export default class Form extends Component {
                       onChange={e => this.handleChange(e)}
                     />
                     <br />
+                    <label>Goal Amount:</label>{"     $"}
                     <input
                       type="number"
                       name="amount"
@@ -116,6 +138,7 @@ export default class Form extends Component {
                       onChange={e => this.handleChange(e)}
                     />{" "}
                     <br />
+                    <label>Description:</label>{"     "}
                     <textarea
                       type="text"
                       name="description"
@@ -123,6 +146,7 @@ export default class Form extends Component {
                       onChange={e => this.handleChange(e)}
                     />{" "}
                     <br />
+                    <label>Picture:</label>{"     "}
                     <input
                       type="file"
                       onChange={e => this.handleFileUpload(e)}
@@ -137,6 +161,10 @@ export default class Form extends Component {
                     )}
                   </form>
                 </Card.Text>
+                <div>
+                Future Costs of 4-Year Colleges: <br /> <br />
+                {this.showCalculations()}
+                </div>
               </Card.Body>
             </Card>{" "}
           </Fragment>
