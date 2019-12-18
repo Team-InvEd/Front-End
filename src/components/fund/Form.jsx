@@ -20,7 +20,6 @@ export default class Form extends Component {
   }
 
   // componentDidMount = () => this.showCalculations
-  
 
   handleFormSubmit = async e => {
     e.preventDefault();
@@ -93,22 +92,22 @@ export default class Form extends Component {
   };
 
   showCalculations = () => {
-    
     if (this.props.user.calculations) {
-      const inState = this.props.user.calculations.inState
-      const outState = this.props.user.calculations.outState
-      const priv = this.props.user.calculations.priv
-      return(
-          <div>
-          In-State: ${inState} <br /> <br />
+      const inState = this.props.user.calculations.inState;
+      const outState = this.props.user.calculations.outState;
+      const priv = this.props.user.calculations.priv;
+      return (
+        <div>
+          In-State: <span className="cash">${Math.formatNum(inState)}</span>{" "}
+          <br /> <br />
           Out-of-State: ${outState} <br /> <br />
           Private: ${priv} <br /> <br />
-          </div>
-        )
+        </div>
+      );
     } else {
-      return <div>Loading</div>
+      return <div>Loading</div>;
     }
-  }
+  };
 
   render() {
     return (
@@ -122,7 +121,8 @@ export default class Form extends Component {
               <Card.Body className="form-body">
                 <Card.Text>
                   <form onSubmit={this.handleFormSubmit}>
-                    <label>Title:</label>{"     "}
+                    <label>Title:</label>
+                    {"     "}
                     <input
                       type="text"
                       name="title"
@@ -130,7 +130,8 @@ export default class Form extends Component {
                       onChange={e => this.handleChange(e)}
                     />
                     <br />
-                    <label>Goal Amount:</label>{"     $"}
+                    <label>Goal Amount:</label>
+                    {"     $"}
                     <input
                       type="number"
                       name="amount"
@@ -138,7 +139,8 @@ export default class Form extends Component {
                       onChange={e => this.handleChange(e)}
                     />{" "}
                     <br />
-                    <label>Description:</label>{"     "}
+                    <label>Description:</label>
+                    {"     "}
                     <textarea
                       type="text"
                       name="description"
@@ -146,7 +148,8 @@ export default class Form extends Component {
                       onChange={e => this.handleChange(e)}
                     />{" "}
                     <br />
-                    <label>Picture:</label>{"     "}
+                    <label>Picture:</label>
+                    {"     "}
                     <input
                       type="file"
                       onChange={e => this.handleFileUpload(e)}
@@ -162,8 +165,8 @@ export default class Form extends Component {
                   </form>
                 </Card.Text>
                 <div>
-                Future Costs of 4-Year Colleges: <br /> <br />
-                {this.showCalculations()}
+                  Future Costs of 4-Year Colleges: <br /> <br />
+                  {this.showCalculations()}
                 </div>
               </Card.Body>
             </Card>{" "}

@@ -21,7 +21,7 @@ class Home extends Component {
     return (
       <div className="homeBox">
         <div className="leftHome">
-          <span style={{ fontSize: "30px" }}>
+          <span style={{ fontSize: "30px", color: "grey" }}>
             Free fundraising for the people and causes you care about.
           </span>
           <br />
