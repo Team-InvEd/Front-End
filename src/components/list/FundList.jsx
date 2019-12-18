@@ -1,6 +1,7 @@
 import React from "react";
 import Search from "./Search";
 import { Link } from "react-router-dom";
+import { Card } from "react-bootstrap";
 
 export default class FundList extends React.Component {
   goToForm = id => {
@@ -15,18 +16,25 @@ export default class FundList extends React.Component {
   showFunds = () => {
     if (this.props.filtered.length) {
       return this.props.filtered.map((res, i) => (
-        <div key={i}>
-          <Link to={"/fund/" + res._id}>{res.title}</Link>
-          <br />
-          {res.userId.name}
-          <br />
-          {res.amount}
-          <br />
-          {/* {res.description} */}
-          <br />
-          <button onClick={() => this.goToForm(res._id)}>Donate</button>
-          <hr />
-          <br />
+        <div
+          className="card bg-light mb-3"
+          key={i}
+          style={{ width: "300px", margin: "0 auto", position: "relative" }}
+        >
+          <div className="card-header">
+            <Link to={"/fund/" + res._id}>{res.title}</Link>
+          </div>
+          <div className="card-body">
+            <h5 className="card-title">
+              {res.userId.name} ::{" "}
+              <span className="cash">${Math.formatNum(res.amount)}</span>
+            </h5>
+            <p className="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+            <button onClick={() => this.goToForm(res._id)}>Donate</button>
+          </div>
         </div>
       ));
     }
@@ -35,7 +43,7 @@ export default class FundList extends React.Component {
     return (
       <React.Fragment>
         <Search search={this.props.updateSearch} />
-        {this.showFunds()}
+        <div style={{ display: "flex" }}>{this.showFunds()}</div>
       </React.Fragment>
     );
   }
