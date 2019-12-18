@@ -1,25 +1,34 @@
 import React, { Component } from "react";
-import Axios from "axios";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 class Profile extends Component {
   state = {
     myStuff: null
   };
-  async componentDidMount() {
-    let myStuff = await Axios.get("http://localhost:5000/myStuff", {
+
+  componentDidMount = () => this.updateLocally();
+
+  updateLocally = async () => {
+    let myStuff = await axios.get("http://localhost:5000/myStuff", {
       withCredentials: true
     });
     console.log(myStuff);
     this.setState({ myStuff });
-  }
+    this.props.updateServer();
+  };
 
   showMyFunds = () => {
     return this.state.myStuff.data.theFunds.map((res, i) => (
       <Alert key={i} variant="success" className="thePanel">
         <span className="cash">${Math.formatNum(res.amount)}</span> for{" "}
         <Link to={"/fund/" + res._id}>{res.title}</Link>{" "}
-        <span className="btn btn-link btn-sm deleteX">X</span>
+        <span
+          className="btn btn-link btn-sm deleteX"
+          onClick={() => this.deleteMyFund(res._id)}
+        >
+          X
+        </span>
       </Alert>
     ));
   };
@@ -43,15 +52,29 @@ class Profile extends Component {
       }
     });
   };
+  deleteMyFund = async id => {
+    try {
+      let x = await axios.post(
+        "http://localhost:5000/fund/delete",
+        { id },
+        { withCredentials: true }
+      );
+
+      this.updateLocally();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   render() {
+    console.log("render running again");
     if (this.state.myStuff)
       return (
         <div>
           Profile <br />
           {this.state.myStuff.data.theFunds.length > 0 ? (
             <div class="panel-group">
-              <div class="panel panel-success">My </div> {this.showMyFunds()}
+              <div class="alert-primary">My Funds:</div> {this.showMyFunds()}
             </div>
           ) : (
             <div className="alert alert-secondary">
@@ -61,7 +84,7 @@ class Profile extends Component {
           )}
           {this.state.myStuff.data.theTransactions.length > 0 ? (
             <div class="panel-group">
-              <div class="panel panel-success">My donations: </div>
+              <div class="alert-primary">My donations: </div>
               {this.showMyDonations()}
             </div>
           ) : (
