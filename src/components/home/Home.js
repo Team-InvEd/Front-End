@@ -5,8 +5,16 @@ import { Link } from "react-router-dom";
 class Home extends Component {
   async componentDidMount() {
     //actions.test()
-    
 }
+goToForm = () => {
+  if (this.props.user) {
+    this.props.history.push("/calculate");
+  } else {
+    this.props.history.push("/log-in");
+    this.props.locate("/calculate");
+  }
+};
+
   render() {
     return (
       <div className="homeBox">
@@ -19,9 +27,7 @@ class Home extends Component {
           <Link to="/funds">
             <button className="btn btn-success">Search Funds</button>
           </Link>{" "}
-          <Link to="/calculate">
-            <button className="btn btn-info">Get Started</button>
-          </Link>
+          <button onClick={this.goToForm} className="btn btn-info">Get Started</button>
           <br />
           {!this.props.user && (
             <div>
