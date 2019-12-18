@@ -3,6 +3,7 @@ import Search from "./Search";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import { AiOutlineSafety } from "react-icons/ai";
+import Logo2 from "../../graphics/leaf1.png";
 
 export default class FundList extends React.Component {
   goToForm = id => {
@@ -30,7 +31,8 @@ export default class FundList extends React.Component {
               {res.userId.name}{" "}
               <span className="cash">${Math.formatNum(res.amount)}</span>
             </h5>
-            <p className="card-text">{res.description}</p>
+            <span className="card-text">{res.description}</span> <br />
+            <br />
             <button onClick={() => this.goToForm(res._id)}>
               <AiOutlineSafety /> Donate
             </button>
@@ -42,9 +44,71 @@ export default class FundList extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Search search={this.props.updateSearch} />
-        <div style={{ display: "flex" }}>{this.showFunds()}</div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            align: "0 auto",
+            width: "900px !important",
+            justifyContent: "center"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              align: "0 auto",
+              width: "900px !important",
+              justifyContent: "space-between"
+            }}
+          >
+            <div style={{ marginBottom: "15px" }}>
+              <Search search={this.props.updateSearch} />
+            </div>
+            <div>
+              <button className="btn create">
+                <img src={Logo2} className="logo2" />
+                Create a new Fund
+              </button>
+            </div>
+          </div>
+          <div
+            style={{
+              flexWrap: "wrap",
+              align: "0 auto",
+              width: "900px !important"
+            }}
+          >
+            {this.showFunds()}
+          </div>
+        </div>
       </React.Fragment>
     );
   }
 }
+
+/*
+
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+          <div></div>
+          <div
+            style={{ align: "0 auto", display: "flex", flexDirection: "row" }}
+          >
+            {" "}
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              align: "0 auto !important"
+            }}
+          >
+            
+          </div>
+        </div>
+      </React.Fragment>
+
+
+*/

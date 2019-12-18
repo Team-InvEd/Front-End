@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 // import actions from "../../services/index";
 import { Link } from "react-router-dom";
+import Logo2 from "../../graphics/leaf1.png";
+import { AiOutlineSearch } from "react-icons/ai";
 
 class Home extends Component {
   async componentDidMount() {
     //actions.test()
-    
-}
+  }
   render() {
     return (
       <div className="homeBox">
@@ -17,10 +18,15 @@ class Home extends Component {
           <br />
           <br /> <br />
           <Link to="/funds">
-            <button className="btn btn-success">Search Funds</button>
+            <button className="btn search">
+              <AiOutlineSearch /> Search Funds
+            </button>
           </Link>{" "}
           <Link to="/calculate">
-            <button className="btn btn-info">Get Started</button>
+            <button className="btn create">
+              <img src={Logo2} className="logo2" />
+              Create a new Fund
+            </button>
           </Link>
           <br />
           {!this.props.user && (
@@ -32,9 +38,7 @@ class Home extends Component {
             </div>
           )}
         </div>
-        <div className="rightHome"> 
-        
-        </div>
+        <div className="rightHome"></div>
       </div>
     );
   }
