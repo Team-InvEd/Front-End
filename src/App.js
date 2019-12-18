@@ -13,7 +13,6 @@ import Fund from "./components/fund/Fund";
 import Donate from "./components/donate/donate";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import Logo from "./graphics/leaf1.png";
 import {
   Redirect,
@@ -107,35 +106,34 @@ class App extends Component {
             </div>
             <div className="rightNav">
               {this.state.user ? (
-                <span>Logged in as {this.state.user.name}</span>
+                <span>
+                  Logged in as{" "}
+                  <NavLink to="/profile" className="btn-link">
+                    {this.state.user.name}
+                  </NavLink>
+                </span>
               ) : null}
-              <NavLink to="/about" className="btn btn-link">
+              <NavLink to="/about" className="btn-link navSpace">
                 {" "}
                 About
-              </NavLink>
+              </NavLink>{" "}
               {this.state.user ? (
-                <Fragment>
-                  <NavLink to="/profile" className="btn btn-link">
-                    {" "}
-                    Profile
-                  </NavLink>
-                  <NavLink
-                    onClick={this.logOut}
-                    to="/"
-                    className="btn btn-link"
-                    style={{ color: "red" }}
-                  >
-                    {" "}
-                    Log Out
-                  </NavLink>
-                </Fragment>
+                <NavLink
+                  onClick={this.logOut}
+                  to="/"
+                  className="btn-link"
+                  style={{ color: "red" }}
+                >
+                  {" "}
+                  Log Out
+                </NavLink>
               ) : (
                 <Fragment>
-                  <NavLink to="/log-in" className="btn btn-link">
+                  <NavLink to="/log-in" className="btn-link navSpace">
                     {" "}
                     Log In{" "}
-                  </NavLink>
-                  <NavLink to="/sign-up" className="btn btn-link">
+                  </NavLink>{" "}
+                  <NavLink to="/sign-up" className="btn-link navSpace">
                     {" "}
                     Sign Up{" "}
                   </NavLink>

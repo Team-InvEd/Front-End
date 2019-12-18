@@ -73,17 +73,16 @@ class Profile extends Component {
           Profile <br />
           {this.state.myStuff.data.theFunds.length > 0 ? (
             <div className="panel-group">
-              <div className="alert-primary">My Funds:</div>{" "}
-              {this.showMyFunds()}
+              <div>My Funds:</div> {this.showMyFunds()}
             </div>
           ) : (
-            <Alert variant="success" className="thePanel">
+            <Alert variant="light" className="removed">
               You haven't created any funds yet.
             </Alert>
           )}
           {this.state.myStuff.data.theTransactions.length > 0 ? (
             <div className="panel-group">
-              <div className="alert-primary">My donations: </div>
+              <div>My donations: </div>
               {this.showMyDonations()}
             </div>
           ) : (

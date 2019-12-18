@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { IoMdArrowRoundForward } from "react-icons/fa";
-import { AiOutlineDoubleRight } from "react-icons/ai";
+import { AiOutlineSafety } from "react-icons/ai";
 
 export default class Fund extends Component {
   state = {
@@ -46,20 +46,24 @@ export default class Fund extends Component {
     if (theFund) {
       return (
         <div>
-          This is the Fund component.
           <br />
-          Title: {theFund.title}
+          <h3>{theFund.title}</h3>
           <br />
-          Picture: <img src={theFund.imageUrl} width="200px" alt="" />
+          <img
+            src={theFund.imageUrl}
+            width="200px"
+            alt=""
+            className="fundImg"
+          />
           <br />
-          Amount: {theFund.amount}
+          <span className="cash">${Math.formatNum(theFund.amount)}</span>
           <br />
-          Description: {theFund.description}
+          {theFund.description}
           <br /> <hr />
           Donations: {this.showDonations()}
           <br />
           <button onClick={() => this.goToForm(this.state.theID)}>
-            Donate
+            <AiOutlineSafety /> Donate
           </button>
           <br />
           <br />
