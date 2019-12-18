@@ -81,3 +81,12 @@ code {
   margin: 0 auto;
   position: relative;
 }
+.amountInput {
+  width: 110px;
+  height: 80px;
+  font-size: 30px;
+  border: none;
+}
+.commentBox {
+  border-color: silver;
+}

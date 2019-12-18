@@ -28,7 +28,8 @@ export default class Fund extends Component {
 
     return theTransactions.map((res, i) => (
       <div key={i}>
-        {res.userId.name} <br />${res.amount} <br />
+        <span className="cash">${res.amount} </span> from {res.userId.name}
+        <br />
         {res.comment}
         <hr />
       </div>

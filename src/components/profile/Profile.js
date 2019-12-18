@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Alert } from "react-bootstrap";
+
 class Profile extends Component {
   state = {
     myStuff: null
@@ -13,7 +14,6 @@ class Profile extends Component {
     let myStuff = await axios.get("http://localhost:5000/myStuff", {
       withCredentials: true
     });
-    console.log(myStuff);
     this.setState({ myStuff });
     this.props.updateServer();
   };
@@ -44,10 +44,10 @@ class Profile extends Component {
         );
       } else {
         return (
-          <div key={i}>
+          <Alert variant="success" className="thePanel" key={i}>
             <span className="cash">${res.amount}</span> to{" "}
-            <span className="removed">Fund is not longer exists. </span>
-          </div>
+            <span className="removed">Fund is not longer exists.</span>
+          </Alert>
         );
       }
     });
@@ -67,31 +67,29 @@ class Profile extends Component {
   };
 
   render() {
-    console.log("render running again");
     if (this.state.myStuff)
       return (
         <div>
           Profile <br />
           {this.state.myStuff.data.theFunds.length > 0 ? (
-            <div class="panel-group">
-              <div class="alert-primary">My Funds:</div> {this.showMyFunds()}
+            <div className="panel-group">
+              <div className="alert-primary">My Funds:</div>{" "}
+              {this.showMyFunds()}
             </div>
           ) : (
-            <div className="alert alert-secondary">
-              {" "}
-              You haven't created any funds yet.{" "}
-            </div>
+            <Alert variant="success" className="thePanel">
+              You haven't created any funds yet.
+            </Alert>
           )}
           {this.state.myStuff.data.theTransactions.length > 0 ? (
-            <div class="panel-group">
-              <div class="alert-primary">My donations: </div>
+            <div className="panel-group">
+              <div className="alert-primary">My donations: </div>
               {this.showMyDonations()}
             </div>
           ) : (
-            <div className="alert alert-secondary">
-              {" "}
-              You haven't made any donations yet.{" "}
-            </div>
+            <Alert variant="success" className="thePanel">
+              You haven't made any donations yet.
+            </Alert>
           )}
         </div>
       );

@@ -49,7 +49,6 @@ class App extends Component {
     this.setState({ theUsers: theUsers.data });
   }
   updateServer = async () => {
-    console.log("whatever");
     const funds = await axios.get("http://localhost:5000/funds");
     this.setState({
       theFunds: funds.data.theFunds,
