@@ -56,33 +56,40 @@ export default class Fund extends Component {
 
     if (theFund) {
       return (
+        <div className="fund-page">
         <div>
-          <br />
-          <h3>{theFund.title}</h3>
-          <br />
-          <img
+        <h3>{theFund.title}</h3> <br />
+        <img
             src={theFund.imageUrl}
-            width="200px"
             alt=""
             className="fundImg"
           />
-          <br />
+        </div>
+        <div>
+          
           <span className="cash">${Math.formatNum(theFund.amount)}</span>
+        </div>
+         
+          <br />
+          
           <br />
           {theFund.description}
           <br /> <hr />
-          Donations: {this.showDonations()}
           <br />
           <button onClick={() => this.goToForm(this.state.theID)}>
             <AiOutlineSafety /> Donate
           </button>
           <br />
-          <h5>Share this Fund</h5>
+          
           <div className="social-icons">
+          <h5>Share this Fund</h5>
           <FacebookShareButton url={`http://localhost:3000/fund/${this.state.theID}`}><FacebookIcon size={50}/></FacebookShareButton>
           <LinkedinShareButton url={`http://localhost:3000/fund/${this.state.theID}`}><LinkedinIcon size={50}/></LinkedinShareButton>
           <TwitterShareButton url={`http://localhost:3000/fund/${this.state.theID}`}><TwitterIcon size={50}/></TwitterShareButton>
           <EmailShareButton url={`http://localhost:3000/fund/${this.state.theID}`}><EmailIcon size={50}/></EmailShareButton>
+          </div>
+          <div>
+          Donations: {this.showDonations()}
           </div>
         </div>
       );
