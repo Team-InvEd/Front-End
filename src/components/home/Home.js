@@ -1,15 +1,11 @@
+"use strict";
 import React, { Component } from "react";
 // import actions from "../../services/index";
 import { Link } from "react-router-dom";
 import Logo2 from "../../graphics/leaf1.png";
 import { AiOutlineSearch } from "react-icons/ai";
 
-class Home extends Component {
-  
-  // state={
-  //   landing: false
-  // }
-  
+export default class Home extends Component {
   async componentDidMount() {
     //actions.test()
   
@@ -28,8 +24,8 @@ class Home extends Component {
   render() {
     return (
       <div className="homeBox">
-        <div>
-          <span style={{ fontSize: "30px", color: "grey" }}>
+        <div className="notBlur">
+         <span style={{ fontSize: "30px" }}>
             Education savings and fundraising made easy.
           </span>
           <br />
@@ -52,11 +48,15 @@ class Home extends Component {
               </Link>{" "}
             </div>
           )}
+          </div>
+
+          
+        <div className="leftHome">
+
+         
         </div>
         <div ></div>
       </div>
     );
   }
 }
-
-export default Home;
