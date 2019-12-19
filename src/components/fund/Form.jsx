@@ -78,13 +78,15 @@ export default class Form extends Component {
     // imageUrl => this name has to be the same as in the model since we pass
     // req.body to .create() method when creating a new thing in '/api/things/create' POST route
     uploadData.append("imageUrl", e.target.files[0]);
-
+    this.setState({
+      gettingImage:true
+    })
     service
       .handleUpload(uploadData)
       .then(response => {
         // console.log('response is: ', response);
         // after the console.log we can see that response carries 'secure_url' which we can use to update the state
-        this.setState({ imageUrl: response.secure_url });
+        this.setState({ imageUrl: response.secure_url, gettingImage:false });
       })
       .catch(err => {
         console.log("Error while uploading the file: ", err);
@@ -100,8 +102,8 @@ export default class Form extends Component {
         <div>
           In-State: <span className="cash">${Math.formatNum(inState)}</span>{" "}
           <br /> <br />
-          Out-of-State: ${outState} <br /> <br />
-          Private: ${priv} <br /> <br />
+          Out-of-State: <span className="cash">${Math.formatNum(outState)}</span>{" "} <br /> <br />
+          Private: <span className="cash">${Math.formatNum(priv)}</span>{" "} <br /> <br />
         </div>
       );
     } else {
@@ -157,6 +159,7 @@ export default class Form extends Component {
                     <br />
                     {this.state.title &&
                     this.state.description &&
+                    !this.state.gettingImage &&
                     this.state.amount ? (
                       <button type="submit">Share</button>
                     ) : (

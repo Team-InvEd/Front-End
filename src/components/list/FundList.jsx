@@ -6,7 +6,7 @@ import { AiOutlineSafety } from "react-icons/ai";
 import Logo2 from "../../graphics/leaf1.png";
 
 export default class FundList extends React.Component {
-  goToForm = id => {
+  goToDonate = id => {
     if (this.props.user) {
       this.props.history.push(`/donate/${id}`);
     } else {
@@ -14,6 +14,8 @@ export default class FundList extends React.Component {
       this.props.locate("/donate");
     }
   };
+
+
   componentDidMount = () => {};
   showFunds = () => {
     if (this.props.filtered.length) {
@@ -33,7 +35,7 @@ export default class FundList extends React.Component {
             </h5>
             <span className="card-text">{res.description}</span> <br />
             <br />
-            <button onClick={() => this.goToForm(res._id)}>
+            <button onClick={() => this.goToDonate(res._id)}>
               <AiOutlineSafety /> Donate
             </button>
           </div>

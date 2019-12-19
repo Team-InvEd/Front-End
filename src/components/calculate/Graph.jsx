@@ -19,7 +19,7 @@ export default class Graph extends Component {
     console.log(this);
     let dataArr = [
       {
-        name: "4 Year In-State College Tuition and Fees",
+        name: "In-State Students",
         "Current Cost": this.props.data.inStatePrice * 4,
         "Current Cost Label":
           "$" + Math.formatNum(this.props.data.inStatePrice * 4),
@@ -28,7 +28,7 @@ export default class Graph extends Component {
           "$" + Math.formatNum(this.props.data.futureInStateCost)
       },
       {
-        name: "4 Year Out-of-State College Tuition and Fees",
+        name: "Out-of-State Students",
         "Current Cost": this.props.data.outStatePrice * 4,
         "Current Cost Label":
           "$" + Math.formatNum(this.props.data.outStatePrice * 4),
@@ -37,7 +37,7 @@ export default class Graph extends Component {
           "$" + Math.formatNum(this.props.data.futureOutStateCost)
       },
       {
-        name: "4 Year Private College Tuition and Fees",
+        name: "Private University Students",
         "Current Cost": this.props.data.avgPrivPrice * 4,
         "Current Cost Label":
           "$" + Math.formatNum(this.props.data.avgPrivPrice * 4),
@@ -49,7 +49,7 @@ export default class Graph extends Component {
 
     return (
       <BarChart
-        isAnimationActive={true}
+        // isAnimationActive={true}
         width={800}
         height={400}
         //    data={this.state.dataArr}
@@ -60,21 +60,21 @@ export default class Graph extends Component {
         <XAxis
           dataKey="name"
           // tickFormatter={formatXAxis}
-          isAnimationActive={true}
+          // isAnimationActive={true}
         />
         <YAxis />
         <Tooltip />
         <Bar 
         type="monotone" 
         dataKey="Current Cost" 
-        fill="#bee0ff" 
+        fill="#4578a8" 
         barSize={30}>
           <LabelList dataKey="Current Cost Label" position="left" />
         </Bar>
         <Bar
           type="monotone"
           dataKey="Future Cost"
-          fill="#c8ffbe"
+          fill="#508a46"
           barSize={30}
         >
           <LabelList dataKey="Future Cost Label" position="right" />
