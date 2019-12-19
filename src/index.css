@@ -266,11 +266,11 @@ video {
 }
 
 .social-icons {
-  width: 80px
-  /* display: flex;
-  justify-content: center; */
-  /* margin-left: 20vw;
-  margin-right: 20vw; */
+  width: 150px;
+  display: flex;
+  /* justify-content: center; */
+  text-align: center;
+  flex-direction: column;
 }
 
 .about {
@@ -306,9 +306,11 @@ video {
 
 .fund-page {
   display: flex;
+  justify-content: space-between;
   padding: 50px
 }
 
 .fundImg {
   width: 500px
 }
+

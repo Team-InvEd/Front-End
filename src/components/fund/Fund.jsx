@@ -68,7 +68,7 @@ export default class Fund extends Component {
         <div>
           <h5>Goal Amount</h5><br />
           <span className="cash2">${Math.formatNum(theFund.amount)}</span> <br />
-          {theFund.description}
+          {theFund.description} <br />
           <button onClick={() => this.goToForm(this.state.theID)}>
             <AiOutlineSafety /> Donate
           </button>
@@ -76,12 +76,12 @@ export default class Fund extends Component {
           <br />
           <div className="social-icons">
           <h5>Share Fund</h5>
-          <FacebookShareButton url={`/fund/${this.state.theID}`}><FacebookIcon size={50}/></FacebookShareButton>
+          <FacebookShareButton className="social-icons" url={`/fund/${this.state.theID}`}><FacebookIcon size={50}/></FacebookShareButton>
           <LinkedinShareButton url={`/fund/${this.state.theID}`}><LinkedinIcon size={50}/></LinkedinShareButton>
           <TwitterShareButton url={`/fund/${this.state.theID}`}><TwitterIcon size={50}/></TwitterShareButton>
           <EmailShareButton url={`/fund/${this.state.theID}`}><EmailIcon size={50}/></EmailShareButton>
           </div>
-          <div>
+          <div style={{width: "100px"}}>
           Donations: {this.showDonations()}
           </div>
         </div>
