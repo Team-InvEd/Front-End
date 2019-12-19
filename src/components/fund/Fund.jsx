@@ -83,10 +83,10 @@ export default class Fund extends Component {
           
           <div className="social-icons">
           <h5>Share this Fund</h5>
-          <FacebookShareButton url={`http://localhost:3000/fund/${this.state.theID}`}><FacebookIcon size={50}/></FacebookShareButton>
-          <LinkedinShareButton url={`http://localhost:3000/fund/${this.state.theID}`}><LinkedinIcon size={50}/></LinkedinShareButton>
-          <TwitterShareButton url={`http://localhost:3000/fund/${this.state.theID}`}><TwitterIcon size={50}/></TwitterShareButton>
-          <EmailShareButton url={`http://localhost:3000/fund/${this.state.theID}`}><EmailIcon size={50}/></EmailShareButton>
+          <FacebookShareButton url={`/fund/${this.state.theID}`}><FacebookIcon size={50}/></FacebookShareButton>
+          <LinkedinShareButton url={`/fund/${this.state.theID}`}><LinkedinIcon size={50}/></LinkedinShareButton>
+          <TwitterShareButton url={`/fund/${this.state.theID}`}><TwitterIcon size={50}/></TwitterShareButton>
+          <EmailShareButton url={`/fund/${this.state.theID}`}><EmailIcon size={50}/></EmailShareButton>
           </div>
           <div>
           Donations: {this.showDonations()}

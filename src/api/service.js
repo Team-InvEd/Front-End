@@ -1,7 +1,7 @@
 import axios from 'axios';
-
+import baseURL from '../services/url'
 const service = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: baseURL,
   // withCredentials: true // => you might need this when having the users in the app 
 });
 
