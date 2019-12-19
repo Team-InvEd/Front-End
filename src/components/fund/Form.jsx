@@ -79,14 +79,14 @@ export default class Form extends Component {
     // req.body to .create() method when creating a new thing in '/api/things/create' POST route
     uploadData.append("imageUrl", e.target.files[0]);
     this.setState({
-      gettingImage:true
-    })
+      gettingImage: true
+    });
     service
       .handleUpload(uploadData)
       .then(response => {
         // console.log('response is: ', response);
         // after the console.log we can see that response carries 'secure_url' which we can use to update the state
-        this.setState({ imageUrl: response.secure_url, gettingImage:false });
+        this.setState({ imageUrl: response.secure_url, gettingImage: false });
       })
       .catch(err => {
         console.log("Error while uploading the file: ", err);
@@ -102,8 +102,12 @@ export default class Form extends Component {
         <div>
           In-State: <span className="cash">${Math.formatNum(inState)}</span>{" "}
           <br /> <br />
-          Out-of-State: <span className="cash">${Math.formatNum(outState)}</span>{" "} <br /> <br />
-          Private: <span className="cash">${Math.formatNum(priv)}</span>{" "} <br /> <br />
+          Out-of-State:{" "}
+          <span className="cash">${Math.formatNum(outState)}</span> <br />{" "}
+          <br />
+          Private: <span className="cash">
+            ${Math.formatNum(priv)}
+          </span> <br /> <br />
         </div>
       );
     } else {
@@ -111,23 +115,23 @@ export default class Form extends Component {
     }
   };
 
-  setAmount = (e) => {
-    if(e.target.value === "Yes") {
-    this.setState({
-      amount: true
-    })
-    } else this.setState({amount:false})
-  }
+  setAmount = e => {
+    if (e.target.value === "Yes") {
+      this.setState({
+        amount: true
+      });
+    } else this.setState({ amount: false });
+  };
 
   showAmount = () => {
-    if(this.state.amount){
-      return(
+    if (this.state.amount) {
+      return (
         <div>
           <label></label>
         </div>
-      )
+      );
     }
-  }
+  };
 
   render() {
     return (
@@ -189,14 +193,17 @@ export default class Form extends Component {
                   Future Costs of 4-Year Colleges: <br /> <br />
                   {this.showCalculations()}
                 </div>
-                <div style={{paddingLeft: "50px", paddingRight: "10vw"}}>
-                  Connect Your Bank Account (Optional) <br /><br />
-                  <label>Routing Number</label><br />
-                  <input type="number" /> <br /><br />
+                <div style={{ paddingLeft: "50px", paddingRight: "10vw" }}>
+                  Connect Your Bank Account (Optional) <br />
+                  <br />
+                  <label>Routing Number</label>
+                  <br />
+                  <input type="number" /> <br />
+                  <br />
                   <label>Set recurring transfers?</label> <br />
-                  <select onChange={e=>this.setAmount(e)}>
-                  <option value="No">No</option>
-                  <option value= "Yes">Yes</option>
+                  <select onChange={e => this.setAmount(e)}>
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
                   </select>
                 </div>
                 {this.showAmount()}
