@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Logo2 from "../../graphics/leaf1.png";
 import { AiOutlineSearch } from "react-icons/ai";
 
-class Home extends Component {
+export default class Home extends Component {
   async componentDidMount() {
     //actions.test()
   }
@@ -50,5 +50,3 @@ class Home extends Component {
     );
   }
 }
-
-export default Home;
