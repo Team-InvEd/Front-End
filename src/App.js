@@ -14,6 +14,8 @@ import Donate from "./components/donate/donate";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Logo from "./graphics/leaf1.png";
+import bgVideo from "./graphics/bgv.mp4";
+
 import {
   Redirect,
   BrowserRouter,
@@ -30,7 +32,7 @@ class App extends Component {
     theTransactions: null,
     theUsers: null,
     message: "",
-    error: "",
+    error: ""
     // landing: false
   };
 
@@ -56,9 +58,9 @@ class App extends Component {
     });
   };
 
-  addCalcToUser = user =>{
-    this.setState({user: user.data})
-  }
+  addCalcToUser = user => {
+    this.setState({ user: user.data });
+  };
   setUser = user => {
     this.setState({ user }, () => {
       if (this.state.where) {
@@ -97,7 +99,6 @@ class App extends Component {
       setTimeout(() => this.setState({ error: "" }), 4000);
     }
   };
-
 
   render() {
     if (this.state.theFunds && this.state.theTransactions)
@@ -155,6 +156,7 @@ class App extends Component {
                 {this.state.message}
               </div>
             )}
+
             {this.state.error && (
               <div className="alert alert-danger">{this.state.error}</div>
             )}
@@ -284,9 +286,21 @@ class App extends Component {
               <Route component={NotFound} />
             </Switch>
           </div>
-          <div class="backgroundGlass"></div>
-
-          <div class="cardGlass"></div>
+          {/* <div id="container">
+          <video
+              autoPlay
+              muted
+              loop
+              style={{
+                position: "fixed",
+                width: "100%",
+                left: 0,
+                top: 0
+              }}
+            >
+              <source src={bgVideo} type="video/mp4" />
+            </video> 
+            </div> */}
         </div>
       );
     else return <div>Loading...</div>;

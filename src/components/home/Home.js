@@ -8,9 +8,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 export default class Home extends Component {
   async componentDidMount() {
     //actions.test()
-  
   }
-
 
   goToForm = () => {
     if (this.props.user) {
@@ -25,12 +23,12 @@ export default class Home extends Component {
     return (
       <div className="homeBox">
         <div className="notBlur">
-         <span style={{ fontSize: "30px" }}>
+          <span style={{ fontSize: "30px" }}>
             Education savings and fundraising made easy.
           </span>
           <br />
           <br /> <br />
-          <Link to="/funds" >
+          <Link to="/funds">
             <button className="btn search">
               <AiOutlineSearch /> Search Funds
             </button>
@@ -48,14 +46,11 @@ export default class Home extends Component {
               </Link>{" "}
             </div>
           )}
-          </div>
-
-          
-        <div className="leftHome">
-
-         
         </div>
-        <div ></div>
+
+        <div class="backgroundGlass"></div>
+        <div class="cardGlass"></div>
+        <div></div>
       </div>
     );
   }
