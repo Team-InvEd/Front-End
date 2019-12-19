@@ -5,9 +5,17 @@ import Logo2 from "../../graphics/leaf1.png";
 import { AiOutlineSearch } from "react-icons/ai";
 
 class Home extends Component {
+  
+  // state={
+  //   landing: false
+  // }
+  
   async componentDidMount() {
     //actions.test()
+  
   }
+
+
   goToForm = () => {
     if (this.props.user) {
       this.props.history.push("/calculate");
@@ -20,13 +28,13 @@ class Home extends Component {
   render() {
     return (
       <div className="homeBox">
-        <div className="leftHome">
+        <div>
           <span style={{ fontSize: "30px", color: "grey" }}>
             Education savings and fundraising made easy.
           </span>
           <br />
           <br /> <br />
-          <Link to="/funds">
+          <Link to="/funds" >
             <button className="btn search">
               <AiOutlineSearch /> Search Funds
             </button>
@@ -45,7 +53,7 @@ class Home extends Component {
             </div>
           )}
         </div>
-        <div className="rightHome"></div>
+        <div ></div>
       </div>
     );
   }

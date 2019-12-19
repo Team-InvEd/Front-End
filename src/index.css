@@ -44,11 +44,13 @@ code {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  height: 70px !important;
+  align-items: flex-start;
+  height: 70px;
   padding: 10px;
   border-bottom: 0px solid silver;
 }
+
+
 .mainBox {
   margin-top: 65px;
 }
@@ -62,14 +64,14 @@ code {
   display: flex;
   padding: 20px;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
 }
-.leftHome {
+/* .leftHome {
   width: 95%;
 }
 .rightHome {
   width: 5%;
-}
+} */
 .thePanel {
   width: 600px;
   text-align: center;
@@ -136,4 +138,16 @@ code {
   justify-content: flex-start;
   text-align: left;
   padding-left: 25px
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-left: 20vw;
+  margin-right: 20vw
+}
+
+.about {
+  padding-left: 150px;
+  padding-right: 150px
 }

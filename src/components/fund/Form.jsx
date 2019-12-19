@@ -111,6 +111,24 @@ export default class Form extends Component {
     }
   };
 
+  setAmount = (e) => {
+    if(e.target.value === "Yes") {
+    this.setState({
+      amount: true
+    })
+    } else this.setState({amount:false})
+  }
+
+  showAmount = () => {
+    if(this.state.amount){
+      return(
+        <div>
+          <label></label>
+        </div>
+      )
+    }
+  }
+
   render() {
     return (
       <div>
@@ -171,6 +189,17 @@ export default class Form extends Component {
                   Future Costs of 4-Year Colleges: <br /> <br />
                   {this.showCalculations()}
                 </div>
+                <div style={{paddingLeft: "50px", paddingRight: "10vw"}}>
+                  Connect Your Bank Account (Optional) <br /><br />
+                  <label>Routing Number</label><br />
+                  <input type="number" /> <br /><br />
+                  <label>Set recurring transfers?</label> <br />
+                  <select onChange={e=>this.setAmount(e)}>
+                  <option value="No">No</option>
+                  <option value= "Yes">Yes</option>
+                  </select>
+                </div>
+                {this.showAmount()}
               </Card.Body>
             </Card>{" "}
           </Fragment>

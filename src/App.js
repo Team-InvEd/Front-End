@@ -30,7 +30,8 @@ class App extends Component {
     theTransactions: null,
     theUsers: null,
     message: "",
-    error: ""
+    error: "",
+    // landing: false
   };
 
   async componentDidMount() {
@@ -96,6 +97,7 @@ class App extends Component {
       setTimeout(() => this.setState({ error: "" }), 4000);
     }
   };
+
 
   render() {
     if (this.state.theFunds && this.state.theTransactions)
@@ -165,6 +167,7 @@ class App extends Component {
                     {...props}
                     user={this.state.user}
                     locate={this.locate}
+                    changeLanding={this.changeLanding}
                   />
                 )}
               />

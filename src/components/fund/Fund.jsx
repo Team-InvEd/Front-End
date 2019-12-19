@@ -1,6 +1,17 @@
 import React, { Component } from "react";
 // import { IoMdArrowRoundForward } from "react-icons/fa";
 import { AiOutlineSafety } from "react-icons/ai";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  FacebookShareCount,
+  LinkedinShareButton,
+  LinkedinIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  EmailShareButton,
+  EmailIcon
+} from 'react-share';
 
 export default class Fund extends Component {
   state = {
@@ -66,8 +77,13 @@ export default class Fund extends Component {
             <AiOutlineSafety /> Donate
           </button>
           <br />
-          <br />
-          {/* <div>{theFund.comment} </div> */}
+          <h5>Share this Fund</h5>
+          <div className="social-icons">
+          <FacebookShareButton url={`http://localhost:3000/fund/${this.state.theID}`}><FacebookIcon size={50}/></FacebookShareButton>
+          <LinkedinShareButton url={`http://localhost:3000/fund/${this.state.theID}`}><LinkedinIcon size={50}/></LinkedinShareButton>
+          <TwitterShareButton url={`http://localhost:3000/fund/${this.state.theID}`}><TwitterIcon size={50}/></TwitterShareButton>
+          <EmailShareButton url={`http://localhost:3000/fund/${this.state.theID}`}><EmailIcon size={50}/></EmailShareButton>
+          </div>
         </div>
       );
     } else {
