@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.698a93c1.chunk.css",
-    "main.js": "/static/js/main.fa2ed185.chunk.js",
-    "main.js.map": "/static/js/main.fa2ed185.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.6b303a61.js",
-    "runtime-main.js.map": "/static/js/runtime-main.6b303a61.js.map",
-    "static/css/2.17e5ed98.chunk.css": "/static/css/2.17e5ed98.chunk.css",
-    "static/js/2.51540d58.chunk.js": "/static/js/2.51540d58.chunk.js",
-    "static/js/2.51540d58.chunk.js.map": "/static/js/2.51540d58.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.9af08844d66c3b6e98a49e03042bb1ed.js": "/precache-manifest.9af08844d66c3b6e98a49e03042bb1ed.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.17e5ed98.chunk.css.map": "/static/css/2.17e5ed98.chunk.css.map",
-    "static/css/main.698a93c1.chunk.css.map": "/static/css/main.698a93c1.chunk.css.map",
-    "static/media/bgv.mp4": "/static/media/bgv.be561b28.mp4",
-    "static/media/leaf1.png": "/static/media/leaf1.a3e19abd.png"
+    "main.css": "/Front-End/static/css/main.698a93c1.chunk.css",
+    "main.js": "/Front-End/static/js/main.411ba1f0.chunk.js",
+    "main.js.map": "/Front-End/static/js/main.411ba1f0.chunk.js.map",
+    "runtime-main.js": "/Front-End/static/js/runtime-main.371a6e9d.js",
+    "runtime-main.js.map": "/Front-End/static/js/runtime-main.371a6e9d.js.map",
+    "static/css/2.17e5ed98.chunk.css": "/Front-End/static/css/2.17e5ed98.chunk.css",
+    "static/js/2.97e80963.chunk.js": "/Front-End/static/js/2.97e80963.chunk.js",
+    "static/js/2.97e80963.chunk.js.map": "/Front-End/static/js/2.97e80963.chunk.js.map",
+    "index.html": "/Front-End/index.html",
+    "precache-manifest.cd65760638bc7fb0b373b8255e5bfe15.js": "/Front-End/precache-manifest.cd65760638bc7fb0b373b8255e5bfe15.js",
+    "service-worker.js": "/Front-End/service-worker.js",
+    "static/css/2.17e5ed98.chunk.css.map": "/Front-End/static/css/2.17e5ed98.chunk.css.map",
+    "static/css/main.698a93c1.chunk.css.map": "/Front-End/static/css/main.698a93c1.chunk.css.map",
+    "static/media/bgv.mp4": "/Front-End/static/media/bgv.be561b28.mp4",
+    "static/media/leaf1.png": "/Front-End/static/media/leaf1.a3e19abd.png"
   }
 }

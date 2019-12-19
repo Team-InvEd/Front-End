@@ -17,6 +17,7 @@ export default class FundList extends React.Component {
 
   componentDidMount = () => {};
   showFunds = () => {
+    console.log(this.props.filtered)
     if (this.props.filtered.length) {
       return this.props.filtered.map((res, i) => (
         <div

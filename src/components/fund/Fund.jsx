@@ -66,23 +66,16 @@ export default class Fund extends Component {
           />
         </div>
         <div>
-          
-          <span className="cash">${Math.formatNum(theFund.amount)}</span>
-        </div>
-         
-          <br />
-          
-          <br />
+          <h5>Goal Amount</h5><br />
+          <span className="cash2">${Math.formatNum(theFund.amount)}</span> <br />
           {theFund.description}
-          <br /> <hr />
-          <br />
           <button onClick={() => this.goToForm(this.state.theID)}>
             <AiOutlineSafety /> Donate
           </button>
+        </div>
           <br />
-          
           <div className="social-icons">
-          <h5>Share this Fund</h5>
+          <h5>Share Fund</h5>
           <FacebookShareButton url={`/fund/${this.state.theID}`}><FacebookIcon size={50}/></FacebookShareButton>
           <LinkedinShareButton url={`/fund/${this.state.theID}`}><LinkedinIcon size={50}/></LinkedinShareButton>
           <TwitterShareButton url={`/fund/${this.state.theID}`}><TwitterIcon size={50}/></TwitterShareButton>
