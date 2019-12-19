@@ -3,7 +3,7 @@ import axios from "axios";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { Card } from "react-bootstrap";
 import { AiOutlineSafety } from "react-icons/ai";
-
+import baseURL from '../../services/url'
 export default class Donate extends Component {
   state = {
     amount: null,
@@ -17,7 +17,7 @@ export default class Donate extends Component {
     const comment = this.state.comment;
     console.log(fundId);
     try {
-      const x = await axios.post("http://localhost:5000/donate", {
+      const x = await axios.post(baseURL + "/donate", {
         amount,
         userId,
         fundId,

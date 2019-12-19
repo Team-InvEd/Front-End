@@ -3,7 +3,8 @@ import axios from "axios";
 import Fund from "./Fund";
 import service from "../../api/service";
 import { Card } from "react-bootstrap";
-
+import baseURL from '../../services/url'
+console.log(baseURL)
 export default class Form extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +35,7 @@ export default class Form extends Component {
     // const picture = this.state.picture;
     try {
       const x = await axios.post(
-        "http://localhost:5000/fund",
+        `${baseURL}/fund`,
         {
           user,
           title,

@@ -3,6 +3,8 @@ import axios from "axios"
 // import states from "./states.json";
 // import outstates from "./out-states.json";
 import Graph from "./Graph.jsx";
+import baseURL from '../../services/url'
+
 
 // import { Link } from "react-router-dom";
 
@@ -147,7 +149,7 @@ export default class Calculate extends Component {
     const id = this.props.user._id
     console.log(calculations)
     try {
-      let x = await axios.post("http://localhost:5000/user", {
+      let x = await axios.post(baseURL + "/user", {
         id,
         calculations
       }, {withCredentials:true})

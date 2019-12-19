@@ -15,6 +15,8 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Logo from "./graphics/leaf1.png";
 import bgVideo from "./graphics/bgv.mp4";
+import baseURL from "./services/url"
+
 
 import {
   Redirect,
@@ -43,15 +45,15 @@ class App extends Component {
 
     this.updateServer();
     let theTransactions = await axios.get(
-      "http://localhost:5000/api/transactions"
+      baseURL + "/api/transactions"
     );
     this.setState({ theTransactions: theTransactions.data });
 
-    let theUsers = await axios.get("http://localhost:5000/api/users");
+    let theUsers = await axios.get(baseURL + "/api/users");
     this.setState({ theUsers: theUsers.data });
   }
   updateServer = async () => {
-    const funds = await axios.get("http://localhost:5000/funds");
+    const funds = await axios.get(baseURL + "/funds");
     this.setState({
       theFunds: funds.data.theFunds,
       filtered: funds.data.theFunds

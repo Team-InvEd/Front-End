@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Alert } from "react-bootstrap";
+import baseURL from '../../services/url'
+
 
 class Profile extends Component {
   state = {
@@ -11,7 +13,7 @@ class Profile extends Component {
   componentDidMount = () => this.updateLocally();
 
   updateLocally = async () => {
-    let myStuff = await axios.get("http://localhost:5000/myStuff", {
+    let myStuff = await axios.get(baseURL + "/myStuff", {
       withCredentials: true
     });
     this.setState({ myStuff });
@@ -55,7 +57,7 @@ class Profile extends Component {
   deleteMyFund = async id => {
     try {
       let x = await axios.post(
-        "http://localhost:5000/fund/delete",
+        baseURL + "/fund/delete",
         { id },
         { withCredentials: true }
       );

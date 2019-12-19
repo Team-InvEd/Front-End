@@ -1,15 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { BrowserRouter, Route } from "react-router-dom";
+import { HashRouter, Route } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 import "./index.css";
 
 
+
 ReactDOM.render(
-  <BrowserRouter>
+  <HashRouter>
     <Route path="/" component={App} />
-  </BrowserRouter>,
+  </HashRouter>,
   document.getElementById("root")
 );
 
