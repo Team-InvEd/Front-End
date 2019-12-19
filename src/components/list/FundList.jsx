@@ -15,7 +15,6 @@ export default class FundList extends React.Component {
     }
   };
 
-
   componentDidMount = () => {};
   showFunds = () => {
     if (this.props.filtered.length) {
@@ -57,40 +56,55 @@ export default class FundList extends React.Component {
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
+            justifyContent: "space-between",
+            flexDirection: "row",
             align: "0 auto",
-            width: "900px !important",
-            justifyContent: "center"
+            marginTop: "70px"
           }}
         >
           <div
             style={{
+              marginBottom: "25px"
+            }}
+          >
+            <Search search={this.props.updateSearch} />
+          </div>
+          <div>
+            <button onClick={this.goToForm} className="btn create">
+              <img src={Logo2} className="logo2" />
+              Create a new Fund
+            </button>
+          </div>
+        </div>
+        <div className="fundBox">
+          {/* <div
+            style={{
               display: "flex",
               flexDirection: "row",
               align: "0 auto",
-              width: "900px !important",
-              justifyContent: "space-between"
+              height: "30%"
             }}
           >
-            <div style={{ marginBottom: "15px" }}>
+            <div
+              style={{
+                marginBottom: "25px",
+                height: "30%"
+              }}
+            >
               <Search search={this.props.updateSearch} />
             </div>
-            <div>
+            <div
+              style={{
+                height: "30%"
+              }}
+            >
               <button onClick={this.goToForm} className="btn create">
                 <img src={Logo2} className="logo2" />
                 Create a new Fund
               </button>
             </div>
-          </div>
-          <div
-            style={{
-              flexWrap: "wrap",
-              align: "0 auto",
-              width: "900px !important"
-            }}
-          >
-            {this.showFunds()}
-          </div>
+          </div> */}
+          <div className="fundListBox">{this.showFunds()}</div>
         </div>
       </React.Fragment>
     );

@@ -47,10 +47,13 @@ code {
   align-items: center;
   height: 70px !important;
   padding: 10px;
+  margin-bottom: 30px;
   border-bottom: 0px solid silver;
+  opacity: 0.9;
+  z-index: 2;
 }
 .mainBox {
-  margin-top: 65px;
+  /* margin-top: 20px; */
 }
 .leftNav {
   color: #1a4f13 !important;
@@ -60,15 +63,111 @@ code {
 }
 .homeBox {
   display: flex;
-  padding: 20px;
+  padding-top: 150px;
   flex-direction: row;
   justify-content: space-around;
+  height: 95vh;
+  width: 100%;
+  padding-bottom: 20px !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 46px;
+  /* background-image: url("https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80"); */
 }
-.leftHome {
-  width: 95%;
+
+.homeBox span{
+
 }
+/*  */
+
+/* body {
+  margin: 0;
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Quicksand', sans-serif;
+} */
+
+.backgroundGlass {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-image: url('//yariv.io/Portfolio/glass/img/back.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+
+.cardGlass {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-image: url('//yariv.io/Portfolio/glass/img/back.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(50px) brightness(1.1);
+  z-index: -1;
+  animation: reveal ease 3.8s 1 forwards;
+}
+
+.card-content {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  padding: 23% 22% 0 20%;
+  box-sizing: border-box;
+  font-weight: 300;
+  text-align: right;
+  color: white;
+  font-size: 135px;
+  line-height: 1;
+  z-index: 0;
+  /* animation: appear ease 5s 0 5s forwards; */
+}
+
+@keyframes reveal {
+  0% {
+      clip-path: inset(20% 80% 20% 20%);
+  }
+  33% {
+      clip-path: inset(20% 20% 20% 20%);
+  }
+  66% {
+      clip-path: inset(20% 20% 20% 20%);
+  }
+  67% {
+    clip-path: inset(20% 20% 20% 20%);
+  }
+  100% {
+    clip-path: inset(20% 20% 20% 20%);
+  }
+}
+
+@keyframes appear {
+  0% {
+      transform: translate(0, 2px);
+      text-shadow: 0px 0px #cb6346;
+  }
+  50% {
+      opacity: 1;
+      transform: translate(0, 2px);
+      text-shadow: 0px 0px #cb6346;
+  }
+  100% {
+      opacity: 1;
+      transform: translate(0, 0);
+      text-shadow: 2px 2px #cb6346;
+  }
+}
+
 .rightHome {
-  width: 5%;
+  width: 0%;
 }
 .thePanel {
   width: 600px;
@@ -93,7 +192,7 @@ code {
   border-color: silver;
 }
 .navSpace {
-  margin: 15px;
+  margin: 40px;
 }
 .wrapFund {
   width: "400px" !important;
@@ -112,7 +211,7 @@ code {
   height: 22px;
 }
 .create {
-  background-color: #98c790 !important;
+  background-color: #a7dd9e !important;
 }
 .create:hover {
   background-color: #8cc49d !important;
@@ -135,5 +234,18 @@ code {
   display: flex;
   justify-content: flex-start;
   text-align: left;
-  padding-left: 25px
+  padding-left: 25px;
+}
+.fundBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 170px;
+}
+.fundListBox {
+  margin: 0 auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
 }

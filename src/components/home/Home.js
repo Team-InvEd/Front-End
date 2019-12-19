@@ -1,3 +1,4 @@
+"use strict";
 import React, { Component } from "react";
 // import actions from "../../services/index";
 import { Link } from "react-router-dom";
@@ -20,8 +21,8 @@ export default class Home extends Component {
   render() {
     return (
       <div className="homeBox">
-        <div className="leftHome">
-          <span style={{ fontSize: "30px", color: "grey" }}>
+        <div className="notBlur">
+         <span style={{ fontSize: "30px" }}>
             Education savings and fundraising made easy.
           </span>
           <br />
@@ -44,6 +45,12 @@ export default class Home extends Component {
               </Link>{" "}
             </div>
           )}
+          </div>
+
+          
+        <div className="leftHome">
+
+         
         </div>
         <div className="rightHome"></div>
       </div>
