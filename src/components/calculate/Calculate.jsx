@@ -265,6 +265,7 @@ export default class Calculate extends Component {
         </form>
         {this.state.showResults ? (
           <div>
+            *Results based on an estimated 5% annual inflation rate for 2019 average 4-year tuition and fees
             <Graph data={this.state}/>
             <button onClick={this.goToForm}>Start your InvEd Fund</button>
           </div>

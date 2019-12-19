@@ -22,7 +22,7 @@ class Home extends Component {
       <div className="homeBox">
         <div className="leftHome">
           <span style={{ fontSize: "30px", color: "grey" }}>
-            Free fundraising for the people and causes you care about.
+            Education savings and fundraising made easy.
           </span>
           <br />
           <br /> <br />
