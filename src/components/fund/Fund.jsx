@@ -84,7 +84,7 @@ export default class Fund extends Component {
         </div>
         <div className="fundLeft">
           {/* <h5>Goal Amount</h5><br /> */}
-          <span classname="cash">${this.showTotal()} raised for </span><span className="cash2"> ${Math.formatNum(theFund.amount)} Goal</span> <br />
+          <span className="cash">${this.showTotal()} raised for </span><span className="cash2"> ${Math.formatNum(theFund.amount)} Goal</span> <br />
           
           <button className="create" onClick={() => this.goToForm(this.state.theID)}>
             <AiOutlineSafety  /> Donate
