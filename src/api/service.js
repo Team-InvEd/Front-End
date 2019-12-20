@@ -2,7 +2,7 @@ import axios from 'axios';
 import baseURL from '../services/url'
 const service = axios.create({
   baseURL: baseURL,
-  // withCredentials: true // => you might need this when having the users in the app 
+  withCredentials: true // => you might need this when having the users in the app 
 });
 
 const errorHandler = err => {

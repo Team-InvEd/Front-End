@@ -26,7 +26,7 @@ export default class FundList extends React.Component {
           key={i}
         >
           <div className="card-header">
-            <Link to={"/fund/" + res._id}>{res.title}</Link>
+            <Link style={{color: "black", fontWeight: "bold"}} to={"/fund/" + res._id}>{res.title}</Link>
           </div>
           <div className="card-body">
             <h5 className="card-title">
@@ -35,7 +35,7 @@ export default class FundList extends React.Component {
             </h5>
             <span className="card-text">{res.description}</span> <br />
             <br />
-            <button onClick={() => this.goToDonate(res._id)}>
+            <button className="create" onClick={() => this.goToDonate(res._id)}>
               <AiOutlineSafety /> Donate
             </button>
           </div>
@@ -71,7 +71,7 @@ export default class FundList extends React.Component {
             <Search search={this.props.updateSearch} />
           </div>
           <div>
-            <button onClick={this.goToForm} className="btn create">
+            <button onClick={this.goToForm} style={{marginRight: "30px", marginTop: "20px"}}className="btn create">
               <img src={Logo2} className="logo2" />
               Create a new Fund
             </button>

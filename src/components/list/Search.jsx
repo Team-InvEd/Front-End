@@ -5,7 +5,7 @@ export default class Search extends Component {
     return (
       <div>
         <br />
-        <AiOutlineSearch />{" "}
+        <AiOutlineSearch style={{marginLeft:"30px"}}/>{" "}
         <input
           type="text"
           name="searchbar"

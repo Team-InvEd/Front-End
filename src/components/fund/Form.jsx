@@ -58,7 +58,6 @@ export default class Form extends Component {
         },
         () => {
           this.props.updateServer();
-
           this.props.history.push(`/fund/${x.data._id}`);
         }
       );
@@ -139,7 +138,7 @@ export default class Form extends Component {
       <div>
         {this.state.showForm && (
           <Fragment>
-            <Card>
+            <Card className="theForm">
               <Card.Header>
                 <h3>Create a new fund</h3>
               </Card.Header>
@@ -181,12 +180,10 @@ export default class Form extends Component {
                     />{" "}
                     <br />
                     {this.state.title &&
-                    this.state.description &&
-                    !this.state.gettingImage &&
-                    this.state.amount ? (
+                    this.state.description ? (
                       <button type="submit">Share</button>
                     ) : (
-                      <button disabled>Share</button>
+                      <button type="submit">Share</button>
                     )}
                   </form>
                 </Card.Text>

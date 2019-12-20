@@ -263,13 +263,13 @@ export default class Calculate extends Component {
             <option value="WY">WY</option>
           </select>{" "}
           <br />
-          <button>Calculate</button>
+          <button className="search">Calculate</button>
         </form>
         {this.state.showResults ? (
           <div>
             *Results based on an estimated 5% annual inflation rate for 2019 average 4-year tuition and fees
             <Graph data={this.state}/>
-            <button onClick={this.goToForm}>Start your InvEd Fund</button>
+            <button className="create" onClick={this.goToForm}>Start your InvEd Fund</button>
           </div>
         ) : null}
       </div>

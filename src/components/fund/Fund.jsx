@@ -15,7 +15,8 @@ import {
 
 export default class Fund extends Component {
   state = {
-    theID: this.props.match.params.id
+    theID: this.props.match.params.id,
+    theCounter: 0
   };
 
   goToForm = id => {
@@ -38,6 +39,7 @@ export default class Fund extends Component {
     // )
 
     // console.log(theUsers)
+    
 
     return theTransactions.map((res, i) => (
       <div key={i}>
@@ -46,8 +48,22 @@ export default class Fund extends Component {
         {res.comment}
         <hr />
       </div>
-    ));
+    ))
   };
+
+  showTotal = ()=> {
+    let theTransactions = this.props.transactions.filter(
+      eachT => eachT.fundId === this.props.match.params.id
+    );
+
+    let counter = 0;
+
+    theTransactions.map((res, i) => (
+     counter+=res.amount
+    ))
+
+    return counter
+  }
 
   render() {
     let theFund = this.props.theFunds.find(
@@ -57,31 +73,30 @@ export default class Fund extends Component {
     if (theFund) {
       return (
         <div className="fund-page">
-        <div>
-        <h3>{theFund.title}</h3> <br />
+        <div className="fundRight">
+        <h2 style={{fontWeight: "bold"}}>{theFund.title}</h2> <br />
         <img
             src={theFund.imageUrl}
             alt=""
             className="fundImg"
-          />
+          /><br />
+          {theFund.description} 
         </div>
-        <div>
-          <h5>Goal Amount</h5><br />
-          <span className="cash2">${Math.formatNum(theFund.amount)}</span> <br />
-          {theFund.description} <br />
-          <button onClick={() => this.goToForm(this.state.theID)}>
-            <AiOutlineSafety /> Donate
-          </button>
-        </div>
-          <br />
+        <div className="fundLeft">
+          {/* <h5>Goal Amount</h5><br /> */}
+          <span classname="cash">${this.showTotal()} raised for </span><span className="cash2"> ${Math.formatNum(theFund.amount)} Goal</span> <br />
+          
+          <button className="create" onClick={() => this.goToForm(this.state.theID)}>
+            <AiOutlineSafety  /> Donate
+          </button> <br/><br/>
           <div className="social-icons">
-          <h5>Share Fund</h5>
-          <FacebookShareButton className="social-icons" url={`/fund/${this.state.theID}`}><FacebookIcon size={50}/></FacebookShareButton>
-          <LinkedinShareButton url={`/fund/${this.state.theID}`}><LinkedinIcon size={50}/></LinkedinShareButton>
-          <TwitterShareButton url={`/fund/${this.state.theID}`}><TwitterIcon size={50}/></TwitterShareButton>
-          <EmailShareButton url={`/fund/${this.state.theID}`}><EmailIcon size={50}/></EmailShareButton>
+          <FacebookShareButton  style={{display: "flex", justifyContent: "center", width:"50px"}} url={`/fund/${this.state.theID}`}><FacebookIcon size={50}/></FacebookShareButton>
+          <LinkedinShareButton style={{display: "flex", justifyContent: "center", width:"50px"}} url={`/fund/${this.state.theID}`}><LinkedinIcon size={50}/></LinkedinShareButton>
+          <TwitterShareButton style={{display: "flex", justifyContent: "center", width:"50px"}} url={`/fund/${this.state.theID}`}><TwitterIcon size={50}/></TwitterShareButton>
+          <EmailShareButton style={{display: "flex", justifyContent: "center", width:"50px"}} url={`/fund/${this.state.theID}`}><EmailIcon size={50}/></EmailShareButton>
           </div>
-          <div style={{width: "100px"}}>
+          <br />
+
           Donations: {this.showDonations()}
           </div>
         </div>
