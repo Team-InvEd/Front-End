@@ -41,10 +41,12 @@ code {
 .logo {
   width: 40px;
   height: 40px;
+  opacity: 1 !important;
+  color: white !important;
 }
 .navBox {
   position: fixed;
-  background-color: rgba(206, 235, 202, 0.5);
+  background-color: rgba(206, 235, 202, 0.1);
   /* background-image: linear-gradient(30deg, #c2e4bd 0%, #cee0ec 100%); */
   width: 100%;
   display: flex;
@@ -55,7 +57,7 @@ code {
   padding: 10px;
   margin-bottom: 30px;
   border-bottom: 0px solid silver;
-  opacity: 0.9;
+  opacity: 1;
   z-index: 2;
 }
 
@@ -63,8 +65,8 @@ code {
   /* margin-top: 20px; */
 }
 .leftNav {
-  color: #1a4f13 !important;
-  font-size: 30px !important;
+  color: #2b5827 !important;
+  font-size: 35px !important;
   text-decoration: none !important;
   font-weight: bolder;
 }
@@ -75,7 +77,7 @@ code {
   justify-content: center;
   height: 95vh;
   width: 100%;
-  color: white;
+  color: black !important;
   padding-bottom: 20px !important;
   background-repeat: no-repeat;
   background-size: cover;
@@ -105,13 +107,13 @@ code {
   left: 0;
   bottom: 0;
   background-image: url("//yariv.io/Portfolio/glass/img/back.jpg");
-  background-image: url("https://media0.giphy.com/media/xUOwFVK1oT7Ko4FJ9C/giphy.gif?cid=790b76112ea357a90caa6a9e182408ab134d337e6f64b4e2&rid=giphy.gif");
+  background-image: url("https://media3.giphy.com/media/x5azV4puF08Ew/giphy.gif?cid=790b7611702983e818e862c13cb58b310f8153c59ba84cea&rid=giphy.gif");
 
   background-size: cover;
   background-position: center;
   z-index: -2;
 }
-/* 
+
 .cardGlass {
   position: absolute;
   top: 0;
@@ -119,14 +121,15 @@ code {
   left: 0;
   bottom: 0;
   background-image: url("//yariv.io/Portfolio/glass/img/back.jpg");
-  background-image: url("https://media0.giphy.com/media/xUOwFVK1oT7Ko4FJ9C/giphy.gif?cid=790b76112ea357a90caa6a9e182408ab134d337e6f64b4e2&rid=giphy.gif");
+  background-image: url("https://media3.giphy.com/media/x5azV4puF08Ew/giphy.gif?cid=790b7611702983e818e862c13cb58b310f8153c59ba84cea&rid=giphy.gif");
+
   border-radius: 100%;
   background-size: cover;
   background-position: center;
-  filter: blur(20px) brightness(1.1);
+  filter: blur(100px) brightness(1.3);
   z-index: -1;
   animation: reveal ease 1.8s 1 forwards;
-} */
+}
 
 #container {
   width: 300px;
@@ -146,7 +149,7 @@ video {
   box-sizing: border-box;
   font-weight: 300;
   text-align: right;
-  color: white;
+  color: black !important;
   font-size: 135px;
   line-height: 1;
   z-index: 0;
@@ -223,6 +226,7 @@ video {
 .logo2 {
   width: 22px;
   height: 22px;
+  opacity: 1 !important;
 }
 .create {
   background-color: rgba(255, 255, 255, 0.1) !important;
@@ -291,17 +295,17 @@ video {
 }
 
 .glassBox {
-  background: white;
-  filter: blur(5px);
+  /* background: white; */
+  filter: blur(1px);
   opacity: 0.3;
-  filter: blur(2px) brightness(1.1);
+  filter: blur(2px) brightness(1.8);
   top: 0;
-  height: 50vw;
-  width: 50vw;
+  height: 20vw;
+  width: 20vw;
   position: fixed;
   z-index: 999;
   pointer-events: none;
-  filter: blur(50px);
+  filter: blur(10px);
 }
 
 .fund-page {
@@ -314,3 +318,7 @@ video {
   width: 500px
 }
 
+
+.fundImg {
+  width: 500px;
+}
